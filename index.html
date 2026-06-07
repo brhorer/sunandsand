@@ -133,6 +133,10 @@ main{padding:46px 0 80px;min-height:60vh}
 .crit .bar{flex:1;height:6px;background:var(--sand-deep);border-radius:5px;overflow:hidden}
 .crit .bar i{display:block;height:100%;border-radius:5px;background:linear-gradient(90deg,var(--mango),var(--coral))}
 .note{font-size:.85rem;color:var(--ink-soft);border-top:1px dashed var(--sand-deep);padding-top:11px}
+.sitelink{display:inline-flex;align-items:center;gap:6px;align-self:flex-start;font-family:'Outfit';font-weight:600;
+  font-size:.82rem;color:var(--ocean-deep);text-decoration:none;border:1.5px solid var(--turq);
+  padding:8px 15px;border-radius:30px;transition:all .2s}
+.sitelink:hover{background:var(--turq);color:#fff;transform:translateY(-1px)}
 
 /* ---------- HOME TILES ---------- */
 .rib.active.r-home{background:linear-gradient(120deg,var(--coral),var(--mango))}
@@ -470,6 +474,32 @@ const HOTELS=[
  R('Panama Jack Playa del Carmen','pdc','Playa del Carmen / Playacar','Playa del Carmen',[3,4,3,4,3,4,3,3],350,'Beachfront, steps from 5th Ave nightlife. Kids club + paid babysitting. Mid-tier; strong location & value, fewer frills.'),
 ];
 
+// Official hotel websites (verified June 2026; brands occasionally restructure URLs).
+const SITES={
+ 'Club Med Cancún':'https://www.clubmed.us/r/cancun/y',
+ 'Hotel Xcaret México · Casa Espiral':'https://www.hotelxcaretmexico.com/',
+ 'Grand Velas Riviera Maya':'https://rivieramaya.grandvelas.com/',
+ 'Grand Velas Riviera Nayarit':'https://rivieranayarit.grandvelas.com/',
+ 'Grand Velas Los Cabos':'https://loscabos.grandvelas.com/',
+ 'Paradisus Playa del Carmen':'https://www.melia.com/en/hotels/mexico/playa-del-carmen/paradisus-playa-del-carmen',
+ 'Hard Rock Vallarta':'https://hotel.hardrock.com/vallarta',
+ 'Hard Rock Cancún':'https://hotel.hardrock.com/cancun',
+ 'Iberostar Selection Playa Mita':'https://www.iberostar.com/en/hotels/riviera-nayarit/iberostar-selection-playa-mita/',
+ 'Hard Rock Los Cabos':'https://hotel.hardrock.com/los-cabos',
+ 'Grand Palladium Vallarta':'https://www.palladiumhotelgroup.com/en/hotels/mexico/rivieranayarit/grand-palladium-vallarta-resort-spa',
+ 'Garza Blanca / Villa del Palmar Cancún':'https://cancun.garzablancaresort.com/',
+ 'Dreams Los Cabos':'https://www.dreamsresorts.com/',
+ 'Meliá Puerto Vallarta':'https://www.melia.com/en/hotels/mexico/puerto-vallarta/melia-puerto-vallarta',
+ 'Paradisus Los Cabos':'https://www.paradisusloscabosresort.com/',
+ 'Hyatt Ziva Puerto Vallarta':'https://www.resortsbyhyatt.com/ziva/ziva-puerto-vallarta',
+ 'Hyatt Ziva Cancún':'https://www.resortsbyhyatt.com/ziva/ziva-cancun',
+ 'Garza Blanca Los Cabos':'https://loscabos.garzablancaresort.com/',
+ 'Pueblo Bonito Rosé':'https://www.pueblobonito.com/resorts/rose',
+ 'Hyatt Ziva Los Cabos':'https://www.resortsbyhyatt.com/ziva/ziva-los-cabos',
+ 'Riu Palace Cabo San Lucas':'https://www.riu.com/en/hotel/mexico/los-cabos/hotel-riu-palace-cabo-san-lucas',
+ 'Panama Jack Playa del Carmen':'https://www.panamajackresorts.com/',
+};
+
 /* ============ SVG ART ============ */
 const ICONS={
  cancun:`<svg viewBox="0 0 64 64"><path d="M32 8 14 52h36L32 8z" fill="#0C7A86"/><path d="M32 8 23 30h18L32 8z" fill="#2FBCCB"/><rect x="26" y="40" width="12" height="12" fill="#FFCF5C"/><path d="M10 52h44" stroke="#08545C" stroke-width="3" stroke-linecap="round"/></svg>`,
@@ -547,11 +577,12 @@ function openCompare(){
     return `<tr><th>${r.label}</th>${cells}</tr>`;
   };
   const noteRow=`<tr><th>The lowdown</th>${items.map(h=>`<td style="text-align:left;font-size:.79rem;color:var(--ink-soft);font-weight:400;min-width:200px">${h.note}</td>`).join('')}</tr>`;
+  const siteRow=`<tr><th>Official site</th>${items.map(h=>`<td>${SITES[h.name]?`<a class="sitelink" href="${SITES[h.name]}" target="_blank" rel="noopener">Visit ↗</a>`:'—'}</td>`).join('')}</tr>`;
   const minw=170+items.length*180;
   document.getElementById('comparemodal').innerHTML=`<div class="cm-panel">
     <div class="cm-head"><h2>Side by side</h2><button class="cm-close" onclick="closeCompare()">✕</button></div>
     <div class="cm-scroll"><table class="cm-table" style="min-width:${minw}px">
-      <thead>${head}</thead><tbody>${rows.map(bodyRow).join('')}${noteRow}</tbody></table></div>
+      <thead>${head}</thead><tbody>${rows.map(bodyRow).join('')}${noteRow}${siteRow}</tbody></table></div>
    </div>`;
   document.getElementById('comparemodal').classList.add('show');
 }
@@ -580,6 +611,7 @@ function cardHTML(h,rankMap){
       </div>
       <div class="crit">${crit}</div>
       <p class="note">${h.note}</p>
+      ${SITES[h.name]?`<a class="sitelink" href="${SITES[h.name]}" target="_blank" rel="noopener">Visit official site ↗</a>`:''}
     </div>
   </article>`;
 }
