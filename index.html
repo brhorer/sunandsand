@@ -134,11 +134,70 @@ main{padding:46px 0 80px;min-height:60vh}
 .crit .bar i{display:block;height:100%;border-radius:5px;background:linear-gradient(90deg,var(--mango),var(--coral))}
 .note{font-size:.85rem;color:var(--ink-soft);border-top:1px dashed var(--sand-deep);padding-top:11px}
 
+/* ---------- HOME TILES ---------- */
+.rib.active.r-home{background:linear-gradient(120deg,var(--coral),var(--mango))}
+.rib.r-home{color:var(--coral-deep)}
+.home-intro{max-width:680px}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:28px}
+.tile{border-radius:24px;overflow:hidden;box-shadow:var(--shadow-sm);border:1px solid var(--sand-deep);
+  background:var(--cream);display:flex;flex-direction:column;cursor:pointer;
+  transition:transform .3s,box-shadow .3s;opacity:0;transform:translateY(16px);animation:rise .5s forwards}
+.tile:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
+.tile-top{padding:24px;color:#fff;position:relative;overflow:hidden;display:flex;align-items:center;gap:16px}
+.tile-top.a-cancun{background:linear-gradient(135deg,var(--turq),var(--ocean))}
+.tile-top.a-pdc{background:linear-gradient(135deg,#46c285,var(--palm))}
+.tile-top.a-cabo{background:linear-gradient(135deg,var(--sun),var(--mango))}
+.tile-top.a-pv{background:linear-gradient(135deg,#ef6aa0,var(--berry))}
+.tile-top .ti{width:66px;height:66px;flex:0 0 auto;position:relative;z-index:1}
+.tile-top .leaf{position:absolute;right:-26px;bottom:-32px;width:142px;height:142px;opacity:.2}
+.tile-top h3{font-family:'Fraunces';font-size:1.65rem;font-weight:800;position:relative;z-index:1;line-height:1.05}
+.tile-top .eyebrow2{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;opacity:.92;font-weight:600;position:relative;z-index:1}
+.tile-body{padding:20px 22px 22px;display:flex;flex-direction:column;gap:13px;flex:1}
+.tile-body .blurb{font-size:.92rem;color:var(--ink-soft)}
+.tile .chips{display:flex;flex-wrap:wrap;gap:7px}
+.tile .chips span{font-size:.76rem;background:var(--sand);color:var(--ink-soft);padding:5px 11px;border-radius:30px}
+.tile .toppick{font-size:.85rem;color:var(--ink);border-top:1px dashed var(--sand-deep);padding-top:12px}
+.tile .toppick b{font-family:'Fraunces';font-weight:700}
+.tile .explore{margin-top:auto;align-self:flex-start;font-family:'Outfit';font-weight:600;font-size:.9rem;
+  color:#fff;border:none;padding:10px 18px;border-radius:30px;cursor:pointer;transition:transform .2s}
+.tile .explore:hover{transform:translateX(3px)}
+.home-cta{margin-top:26px;background:linear-gradient(120deg,var(--coral),var(--mango));border-radius:24px;
+  padding:28px 30px;color:#fff;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.home-cta h3{font-size:1.55rem;font-weight:800}
+.home-cta p{opacity:.96;font-size:.95rem;max-width:540px;margin-top:4px}
+.home-cta button{background:#fff;color:var(--coral-deep);border:none;font-family:'Outfit';font-weight:700;
+  font-size:.95rem;padding:14px 24px;border-radius:30px;cursor:pointer;white-space:nowrap;transition:transform .2s}
+.home-cta button:hover{transform:translateY(-2px)}
+
 /* ---------- BUILDER ---------- */
 .builder-intro{max-width:720px;margin-bottom:26px}
-.builder-grid{display:grid;grid-template-columns:340px 1fr;gap:30px;align-items:start}
+.builder-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:start}
 .sliders{background:var(--cream);border-radius:22px;padding:22px;border:1px solid var(--sand-deep);
-  box-shadow:var(--shadow-sm);position:sticky;top:80px}
+  box-shadow:var(--shadow-sm);position:relative}
+.vibe-lead{font-size:.74rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:10px}
+.imp-list{margin-top:6px}
+.imp-row{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:13px 0;border-bottom:1px solid var(--sand-deep)}
+.imp-row:last-child{border-bottom:none}
+.imp-meta{display:flex;align-items:center;gap:11px;min-width:0}
+.imp-ico{width:40px;height:40px;border-radius:13px;background:var(--sand);display:grid;place-items:center;font-size:1.2rem;flex:0 0 auto}
+.imp-meta b{font-weight:600;font-size:.95rem;display:block;line-height:1.2}
+.imp-meta span{font-size:.78rem;color:var(--ink-soft);display:block}
+.seg{display:inline-flex;background:var(--sand);border-radius:30px;padding:3px;gap:2px;flex:0 0 auto}
+.seg button{border:none;background:transparent;font-family:'Outfit';font-weight:600;font-size:.78rem;
+  color:var(--ink-soft);padding:8px 13px;border-radius:30px;cursor:pointer;transition:all .18s;white-space:nowrap}
+.seg button:hover{color:var(--ink)}
+.seg button.on{color:#fff}
+.seg button.on[data-lv="0"]{background:#9d8e7f}
+.seg button.on[data-lv="1"]{background:var(--turq)}
+.seg button.on[data-lv="2"]{background:var(--mango)}
+.seg button.on[data-lv="3"]{background:var(--coral)}
+.rank-cap{font-size:.78rem;font-weight:600;letter-spacing:.04em;color:var(--ink-soft);margin-bottom:4px;
+  text-transform:uppercase}
+@media(max-width:600px){
+  .imp-row{flex-direction:column;align-items:stretch;gap:9px}
+  .seg{width:100%;justify-content:space-between}
+  .seg button{flex:1;text-align:center;padding:9px 6px}
+}
 .slider{margin-bottom:16px}
 .slider .top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px}
 .slider .top b{font-weight:600;font-size:.92rem}
@@ -222,6 +281,9 @@ body.bar-open{padding-bottom:104px}
   .builder-grid{grid-template-columns:1fr}.sliders{position:static}
   .toolbar .hint{margin-left:0;width:100%}
   .cards{grid-template-columns:1fr}
+  .tiles{grid-template-columns:1fr}
+  .home-cta{flex-direction:column;align-items:flex-start}
+  .home-cta button{width:100%}
 }
 @media(max-width:600px){
   .wrap{padding:0 16px}
@@ -257,7 +319,7 @@ body.bar-open{padding-bottom:104px}
     </g>
   </svg>
   <div class="wrap topbar">
-    <div class="brand">
+    <div class="brand" onclick="go('home')" style="cursor:pointer">
       <svg class="mark" viewBox="0 0 40 40"><path d="M20 3C12 12 8 20 8 27a12 12 0 0 0 24 0c0-7-4-15-12-24z" fill="#FF6F61"/><path d="M20 14c-4 5-6 9-6 13a6 6 0 0 0 12 0c0-4-2-8-6-13z" fill="#FFCF5C"/></svg>
       Sun &amp; Sand
     </div>
@@ -312,6 +374,26 @@ const CRITERIA=[
   {k:'suites', label:'Group suites', w:8},
   {k:'spa', label:'Spa', w:5},
 ];
+
+// Hidden importance scale — front-end shows words, back-end uses these weights.
+const LEVELS=[{label:'Skip',w:0},{label:'Nice',w:1},{label:'Important',w:2},{label:'Must',w:4}];
+const META={
+  u4:['🍼','Cribs, baby clubs & sitters for the under-4 crowd'],
+  adult:['🍸','Nightlife, swim-up bars & adults-only corners'],
+  dining:['🍽️','Range &amp; quality of the included restaurants'],
+  kids:['🧒','Supervised fun for the 4–5 year-olds'],
+  pools:['🌊','Splash pads, slides &amp; water parks'],
+  beach:['🏖️','Calm, wade-in water for little ones'],
+  suites:['🛏️','Big / connecting suites for the whole crew'],
+  spa:['💆','Grown-up downtime &amp; pampering'],
+};
+const DEFAULT_LEVELS={u4:3,adult:3,dining:2,kids:2,pools:2,beach:2,suites:1,spa:1};
+const VIBES={
+  balanced:{u4:3,adult:3,dining:2,kids:2,pools:2,beach:2,suites:1,spa:1},
+  littles :{u4:3,adult:1,dining:1,kids:3,pools:3,beach:2,suites:2,spa:0},
+  party   :{u4:1,adult:3,dining:3,kids:1,pools:1,beach:2,suites:1,spa:2},
+  beach   :{u4:2,adult:2,dining:1,kids:2,pools:2,beach:3,suites:1,spa:1},
+};
 
 const REGIONS=[
  {id:'cancun', name:'Cancún', cls:'r-cancun', acls:'a-cancun', color:'#2FBCCB',
@@ -397,12 +479,15 @@ const ICONS={
 };
 const LEAF=`<svg viewBox="0 0 120 120"><path d="M60 115C58 70 60 40 70 14 45 24 24 46 18 76 30 44 48 24 72 12 56-8 30-12 6 0 38-2 60 14 70 38 88 32 108 40 118 60 96 44 74 44 56 60 60 86 58 110 60 115z" fill="#ffffff"/></svg>`;
 const BLOB=`<svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="26" fill="#FFA63D"/></svg>`;
+ICONS.home=`<svg viewBox="0 0 64 64"><circle cx="32" cy="25" r="10" fill="#FFCF5C"/><path d="M8 45c6-5 12-5 18 0 6-5 12-5 18 0 4-3 8-3 12 0v9H8z" fill="#2FBCCB"/><g stroke="#FF8A4B" stroke-width="3" stroke-linecap="round"><path d="M32 7v6M14 25h6M44 25h6M19 12l4 4M45 12l-4 4"/></g></svg>`;
 
 /* ============ LOGIC ============ */
-let state={view:'cancun', sub:'all', compare:[], weights:Object.fromEntries(CRITERIA.map(c=>[c.k,c.w]))};
+let state={view:'home', sub:'all', compare:[], levels:{...DEFAULT_LEVELS}, weights:{}};
 
-function totalW(){return CRITERIA.reduce((a,c)=>a+state.weights[c.k],0)||1;}
-function weighted(h){let s=0;CRITERIA.forEach(c=>s+=state.weights[c.k]*h.s[c.k]);return s/totalW();}
+function syncWeights(){CRITERIA.forEach(c=>state.weights[c.k]=LEVELS[state.levels[c.k]].w);}
+function weighted(h){let tw=0,s=0;CRITERIA.forEach(c=>{const w=state.weights[c.k];tw+=w;s+=w*h.s[c.k];});
+  if(tw===0){let e=0;CRITERIA.forEach(c=>e+=h.s[c.k]);return e/CRITERIA.length;}
+  return s/tw;}
 function value(h){return weighted(h)/h.price*100;}
 function globalRanks(){
   const arr=HOTELS.map(h=>({h,w:weighted(h)})).sort((a,b)=>b.w-a.w);
@@ -414,12 +499,13 @@ function globalRanks(){
 /* ribbon */
 function buildRibbon(){
   const rb=document.getElementById('ribbon');
-  rb.innerHTML=REGIONS.map(r=>`<button class="rib ${r.cls}" data-v="${r.id}">${ICONS[r.id]}${r.name}</button>`).join('')
+  rb.innerHTML=`<button class="rib r-home" data-v="home">${ICONS.home}Home</button>`
+    +REGIONS.map(r=>`<button class="rib ${r.cls}" data-v="${r.id}">${ICONS[r.id]}${r.name}</button>`).join('')
     +`<button class="rib r-build" data-v="build">⚖︎ Build Your Ideal Hotel</button>`;
   rb.querySelectorAll('.rib').forEach(b=>b.onclick=()=>go(b.dataset.v));
 }
 function go(v){ if(viewFromHash()===v){applyView(v,true);} else {location.hash=v;} }
-function viewFromHash(){const h=location.hash.replace('#','');return ['cancun','pdc','cabo','pv','build'].includes(h)?h:'cancun';}
+function viewFromHash(){const h=location.hash.replace('#','');return ['home','cancun','pdc','cabo','pv','build'].includes(h)?h:'home';}
 function setRibbonActive(v){document.querySelectorAll('.rib').forEach(b=>b.classList.toggle('active',b.dataset.v===v));}
 function applyView(v,scroll){state.view=v;state.sub='all';setRibbonActive(v);render();
   if(scroll){const y=document.querySelector('.ribbon-shell').offsetTop-2;window.scrollTo({top:y,behavior:'smooth'});}}
@@ -531,12 +617,15 @@ function renderRegion(){
 }
 
 function renderBuilder(){
-  const sliders=CRITERIA.map(c=>{
-    const pct=Math.round(state.weights[c.k]/totalW()*100);
-    return `<div class="slider">
-      <div class="top"><b>${c.label}</b><span class="pct">${pct}%</span></div>
-      <input type="range" min="0" max="30" value="${state.weights[c.k]}" data-k="${c.k}">
+  const rows=CRITERIA.map(c=>{
+    const lv=state.levels[c.k];
+    const segs=LEVELS.map((L,i)=>`<button data-k="${c.k}" data-lv="${i}" class="${i===lv?'on':''}">${L.label}</button>`).join('');
+    return `<div class="imp-row">
+      <div class="imp-meta"><span class="imp-ico">${META[c.k][0]}</span><div><b>${c.label}</b><span>${META[c.k][1]}</span></div></div>
+      <div class="seg">${segs}</div>
     </div>`;}).join('');
+  const must=CRITERIA.filter(c=>state.levels[c.k]===3).length;
+  const off=CRITERIA.filter(c=>state.levels[c.k]===0).length;
   const rankMap=globalRanks();
   const ranked=[...HOTELS].sort((a,b)=>weighted(b)-weighted(a));
   const items=ranked.map(h=>{
@@ -550,41 +639,75 @@ function renderBuilder(){
    <div class="region-head"><div>
      <span class="eyebrow">Make it yours</span>
      <h2>Build Your Ideal Hotel</h2>
-     <p class="blurb builder-intro">Every family weighs these differently. Drag the sliders to tell us what matters — chasing nightlife, obsessed with infant care, hunting the best beach — and the whole list of 22 re-ranks instantly. Percentages auto-normalize, so don’t worry about making them add up.</p>
+     <p class="blurb builder-intro">No sliders, no math. Just tell us how much each thing matters to your crew — and all 22 resorts re-rank on the spot. Tap a vibe to start fast, then fine-tune any factor.</p>
    </div></div>
    <div class="builder-grid">
      <div class="sliders">
+       <div class="vibe-lead">Start with a vibe</div>
        <div class="preset-row">
-         <button class="preset" data-p="default">Reset to default</button>
-         <button class="preset" data-p="littles">All about the littles</button>
-         <button class="preset" data-p="party">Grown-up fun</button>
-         <button class="preset" data-p="value">Best beach + value</button>
+         <button class="preset" data-vibe="balanced">⚖︎ Balanced</button>
+         <button class="preset" data-vibe="littles">🍼 All about the littles</button>
+         <button class="preset" data-vibe="party">🍸 Grown-up fun</button>
+         <button class="preset" data-vibe="beach">🏖️ Beach first</button>
        </div>
-       ${sliders}
-       <button class="reset" data-p="default">↺ Reset weights</button>
+       <div class="imp-list">${rows}</div>
      </div>
-     <div class="ranklist">${items}</div>
+     <div class="ranklist">
+       <div class="rank-cap">${must} must-have${must!==1?'s':''}${off?` · ${off} skipped`:''} → your ranking</div>
+       ${items}
+     </div>
    </div>`;
-  document.querySelectorAll('input[type=range]').forEach(inp=>inp.oninput=()=>{
-    state.weights[inp.dataset.k]=+inp.value;renderBuilder();});
-  document.querySelectorAll('[data-p]').forEach(b=>b.onclick=()=>applyPreset(b.dataset.p));
+  document.querySelectorAll('.seg button').forEach(b=>b.onclick=()=>{state.levels[b.dataset.k]=+b.dataset.lv;syncWeights();renderBuilder();});
+  document.querySelectorAll('[data-vibe]').forEach(b=>b.onclick=()=>applyVibe(b.dataset.vibe));
   afterRender();
 }
 
-function applyPreset(p){
-  const presets={
-    default:Object.fromEntries(CRITERIA.map(c=>[c.k,c.w])),
-    littles:{u4:30,adult:6,dining:8,kids:20,pools:18,beach:14,suites:10,spa:2},
-    party:{u4:8,adult:30,dining:18,kids:6,pools:10,beach:10,suites:6,spa:10},
-    value:{u4:14,adult:12,dining:8,kids:10,pools:14,beach:26,suites:6,spa:4},
-  };
-  state.weights={...presets[p]};renderBuilder();
+function applyVibe(p){state.levels={...VIBES[p]};syncWeights();renderBuilder();}
+
+function renderHome(){
+  const tiles=REGIONS.map(r=>{
+    const list=HOTELS.filter(h=>h.macro===r.id).sort((a,b)=>weighted(b)-weighted(a));
+    const top=list[0];
+    const chips=r.known.slice(0,3).map(k=>`<span>${k}</span>`).join('');
+    const intro=r.blurb.split('. ').slice(0,2).join('. ').replace(/\.?$/,'.');
+    return `<article class="tile" data-go="${r.id}">
+      <div class="tile-top ${r.acls}">
+        <div class="leaf">${LEAF}</div>
+        <div class="ti">${ICONS[r.id]}</div>
+        <div><div class="eyebrow2">${r.eyebrow}</div><h3>${r.name}</h3></div>
+      </div>
+      <div class="tile-body">
+        <p class="blurb">${intro}</p>
+        <div class="chips">${chips}</div>
+        <div class="toppick">${list.length} resorts · Top match: <b>${top.name}</b> (${weighted(top).toFixed(2)})</div>
+        <button class="explore" style="background:${r.color}">Explore ${r.name} →</button>
+      </div>
+    </article>`;
+  }).join('');
+  document.getElementById('main').innerHTML=`
+   <div class="region-head"><div>
+     <span class="eyebrow">The Atlas</span>
+     <h2>Four coasts, one easy call</h2>
+     <p class="blurb home-intro">From the calm Caribbean shallows of the Yucatán to the desert drama of Baja and the jungle-backed bays of the Pacific — pick a corner of Mexico to explore, or jump straight to building your ideal hotel.</p>
+   </div></div>
+   <div class="tiles">${tiles}</div>
+   <div class="home-cta">
+     <div><h3>Can’t agree on what matters?</h3><p>Drag eight sliders — infant care, nightlife, beach, budget — and watch all 22 resorts re-rank to your crew’s priorities.</p></div>
+     <button onclick="go('build')">⚖︎ Build Your Ideal Hotel</button>
+   </div>`;
+  document.querySelectorAll('.tile').forEach((t,i)=>{t.style.animationDelay=(i*80)+'ms';t.onclick=()=>go(t.dataset.go);});
+  afterRender();
 }
 
-function render(){state.view==='build'?renderBuilder():renderRegion();}
+function render(){
+  if(state.view==='home')renderHome();
+  else if(state.view==='build')renderBuilder();
+  else renderRegion();
+}
 function stagger(){document.querySelectorAll('.card').forEach((c,i)=>c.style.animationDelay=(i*60)+'ms');}
 
 buildRibbon();
+syncWeights();
 document.getElementById('comparemodal').onclick=e=>{if(e.target.id==='comparemodal')closeCompare();};
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeCompare();});
 window.addEventListener('hashchange',()=>applyView(viewFromHash(),true));
