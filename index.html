@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sun &amp; Sand · A Family All-Inclusive Atlas of Mexico</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --sand:#FFF4E4; --sand-deep:#FBE7CE; --cream:#FFFBF4;
+  --ink:#33261A; --ink-soft:#6B5746;
+  --ocean:#0C7A86; --ocean-deep:#08545C; --turq:#2FBCCB; --turq-light:#7FE0E6;
+  --coral:#FF6F61; --coral-deep:#F2543C; --mango:#FFA63D; --sun:#FFCF5C;
+  --berry:#D33C7A; --palm:#3AA66B;
+  --shadow:0 18px 40px -20px rgba(56,30,12,.45);
+  --shadow-sm:0 8px 20px -12px rgba(56,30,12,.4);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Outfit',system-ui,sans-serif;color:var(--ink);
+  background:var(--sand);line-height:1.55;overflow-x:hidden;
+}
+h1,h2,h3,.display{font-family:'Fraunces',Georgia,serif;font-weight:600;line-height:1.05;letter-spacing:-.01em}
+.wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+a{color:inherit}
+
+/* ---------- HERO ---------- */
+.hero{position:relative;min-height:86vh;display:flex;flex-direction:column;
+  background:linear-gradient(180deg,#FFE3A8 0%,#FFC56B 22%,#FF9A5B 45%,#FF6F61 66%,#2FBCCB 66.2%,#0C7A86 100%);
+  overflow:hidden}
+.hero .sun{position:absolute;top:11%;left:50%;transform:translateX(-50%);width:170px;height:170px;z-index:1}
+.hero svg.scenery{position:absolute;bottom:0;left:0;width:100%;height:auto;z-index:2}
+.hero .topbar{position:relative;z-index:6}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:20px 0}
+.brand{display:flex;align-items:center;gap:11px;font-family:'Fraunces';font-weight:800;font-size:1.25rem;color:#5A2A12;flex:0 0 auto}
+.brand .mark{width:34px;height:34px}
+.btn-build{font-family:'Outfit';font-weight:600;font-size:.92rem;border:none;cursor:pointer;
+  background:#5A2A12;color:#FFE3A8;padding:11px 18px;border-radius:40px;box-shadow:var(--shadow-sm);
+  transition:transform .25s,background .25s}
+.btn-build:hover{transform:translateY(-2px);background:#73371A}
+.btn-build .shrt{display:none}
+.hero-copy{position:relative;z-index:5;flex:1;display:flex;flex-direction:column;justify-content:center;
+  padding:14px 0 120px;max-width:760px}
+.kicker{display:inline-block;background:rgba(90,42,18,.14);color:#5A2A12;font-weight:600;
+  font-size:.74rem;letter-spacing:.22em;text-transform:uppercase;padding:7px 15px;border-radius:30px;width:fit-content;margin-bottom:18px}
+.hero h1{font-size:clamp(2.6rem,6.4vw,5rem);color:#46210E;font-weight:800}
+.hero h1 em{font-style:italic;color:#fff;font-weight:500}
+.hero p.lede{margin-top:18px;font-size:clamp(1rem,2vw,1.22rem);color:#5A2A12;max-width:560px}
+.hero .stat-row{margin-top:26px;display:flex;gap:26px;flex-wrap:wrap}
+.hero .stat b{font-family:'Fraunces';font-size:1.7rem;color:#46210E;display:block;line-height:1}
+.hero .stat span{font-size:.82rem;color:#6e3a1d;font-weight:500}
+
+/* ---------- RIBBON ---------- */
+.ribbon-shell{position:sticky;top:0;z-index:40;background:var(--cream);
+  box-shadow:0 6px 22px -16px rgba(56,30,12,.5);border-bottom:1px solid var(--sand-deep)}
+.ribbon{display:flex;gap:8px;overflow-x:auto;padding:11px 22px;max-width:1180px;margin:0 auto;
+  scrollbar-width:none}
+.ribbon::-webkit-scrollbar{display:none}
+.rib{flex:0 0 auto;display:flex;align-items:center;gap:9px;cursor:pointer;border:none;background:transparent;
+  font-family:'Outfit';font-weight:600;font-size:.95rem;color:var(--ink-soft);padding:9px 16px;border-radius:40px;
+  white-space:nowrap;transition:all .22s}
+.rib svg{width:22px;height:22px;flex:0 0 auto}
+.rib:hover{color:var(--ink);background:var(--sand)}
+.rib.active{color:#fff;box-shadow:var(--shadow-sm)}
+.rib.active.r-cancun{background:var(--turq)}
+.rib.active.r-pdc{background:var(--palm)}
+.rib.active.r-cabo{background:var(--mango)}
+.rib.active.r-pv{background:var(--berry)}
+.rib.active.r-build{background:var(--coral)}
+.rib.r-build{margin-left:auto;color:var(--coral-deep)}
+
+/* ---------- SECTIONS ---------- */
+main{padding:46px 0 80px;min-height:60vh}
+.region-head{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;margin-bottom:8px}
+.region-head .icon-big{width:120px;height:120px}
+.eyebrow{font-weight:600;font-size:.76rem;letter-spacing:.2em;text-transform:uppercase;color:var(--coral-deep)}
+.region-head h2{font-size:clamp(2rem,5vw,3.3rem);margin:6px 0 4px;font-weight:800}
+.region-head .blurb{font-size:1.05rem;color:var(--ink-soft);max-width:680px}
+.known{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 4px}
+.known span{background:var(--cream);border:1px solid var(--sand-deep);padding:6px 13px;border-radius:30px;
+  font-size:.84rem;font-weight:500;color:var(--ink-soft)}
+
+.climate{margin:30px 0 8px}
+.climate h3{font-size:1.15rem;font-weight:600;display:flex;align-items:center;gap:9px;margin-bottom:14px}
+.climate-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:13px}
+.cl-card{background:linear-gradient(160deg,var(--cream),var(--sand));border-radius:16px;padding:15px 16px;
+  border:1px solid var(--sand-deep);position:relative;overflow:hidden}
+.cl-card .span{font-family:'Fraunces';font-weight:600;font-size:1.02rem;color:var(--ocean-deep)}
+.cl-card .txt{font-size:.86rem;color:var(--ink-soft);margin-top:4px}
+.cl-card .blob{position:absolute;right:-14px;top:-14px;width:54px;height:54px;opacity:.5}
+
+.toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin:34px 0 22px;
+  padding:16px 18px;background:var(--cream);border-radius:18px;border:1px solid var(--sand-deep)}
+.toolbar label{font-weight:600;font-size:.9rem}
+.toolbar select{font-family:'Outfit';font-weight:500;font-size:.95rem;padding:10px 14px;border-radius:12px;
+  border:1.5px solid var(--sand-deep);background:#fff;color:var(--ink);cursor:pointer;min-width:210px}
+.toolbar .hint{font-size:.84rem;color:var(--ink-soft);margin-left:auto;display:flex;align-items:center;gap:7px}
+.dot{width:9px;height:9px;border-radius:50%;display:inline-block}
+
+/* ---------- CARDS ---------- */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:20px}
+.card{background:var(--cream);border-radius:22px;padding:0;overflow:hidden;box-shadow:var(--shadow-sm);
+  border:1px solid var(--sand-deep);position:relative;display:flex;flex-direction:column;
+  opacity:0;transform:translateY(16px);animation:rise .5s forwards}
+@keyframes rise{to{opacity:1;transform:none}}
+.card-top{padding:17px 19px 14px;position:relative;color:#fff;overflow:hidden}
+.card-top.a-cancun{background:linear-gradient(135deg,var(--turq),var(--ocean))}
+.card-top.a-pdc{background:linear-gradient(135deg,#46c285,var(--palm))}
+.card-top.a-cabo{background:linear-gradient(135deg,var(--sun),var(--mango))}
+.card-top.a-pv{background:linear-gradient(135deg,#ef6aa0,var(--berry))}
+.card-top .leaf{position:absolute;right:-18px;bottom:-22px;width:108px;height:108px;opacity:.22}
+.rankbadge{position:absolute;top:13px;right:14px;background:rgba(255,255,255,.92);color:var(--ink);
+  font-family:'Fraunces';font-weight:800;font-size:.92rem;padding:5px 11px;border-radius:30px;z-index:2}
+.card-top .area{font-size:.74rem;letter-spacing:.13em;text-transform:uppercase;opacity:.92;font-weight:600;position:relative;z-index:1}
+.card-top h3{font-size:1.32rem;margin:3px 0 0;font-weight:600;position:relative;z-index:1;max-width:80%}
+.scoreline{display:flex;align-items:baseline;gap:8px;margin-top:11px;position:relative;z-index:1}
+.scoreline .big{font-family:'Fraunces';font-weight:800;font-size:1.85rem;line-height:1}
+.scoreline .of{opacity:.8;font-size:.85rem}
+.matchbar{height:7px;border-radius:6px;background:rgba(255,255,255,.32);margin-top:9px;overflow:hidden;position:relative;z-index:1}
+.matchbar i{display:block;height:100%;background:#fff;border-radius:6px;transition:width .5s}
+
+.card-body{padding:15px 19px 19px;display:flex;flex-direction:column;gap:13px;flex:1}
+.meta-row{display:flex;gap:9px;flex-wrap:wrap}
+.pill{font-size:.78rem;font-weight:600;padding:5px 11px;border-radius:30px;background:var(--sand);color:var(--ink-soft)}
+.pill.price{background:#FFEFD6;color:#9a5a14}
+.pill.value{background:#E0F4F1;color:var(--ocean-deep)}
+.crit{display:grid;grid-template-columns:1fr 1fr;gap:7px 16px}
+.crit .row{display:flex;align-items:center;gap:7px}
+.crit .lab{font-size:.74rem;color:var(--ink-soft);width:78px;flex:0 0 auto}
+.crit .bar{flex:1;height:6px;background:var(--sand-deep);border-radius:5px;overflow:hidden}
+.crit .bar i{display:block;height:100%;border-radius:5px;background:linear-gradient(90deg,var(--mango),var(--coral))}
+.note{font-size:.85rem;color:var(--ink-soft);border-top:1px dashed var(--sand-deep);padding-top:11px}
+
+/* ---------- BUILDER ---------- */
+.builder-intro{max-width:720px;margin-bottom:26px}
+.builder-grid{display:grid;grid-template-columns:340px 1fr;gap:30px;align-items:start}
+.sliders{background:var(--cream);border-radius:22px;padding:22px;border:1px solid var(--sand-deep);
+  box-shadow:var(--shadow-sm);position:sticky;top:80px}
+.slider{margin-bottom:16px}
+.slider .top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px}
+.slider .top b{font-weight:600;font-size:.92rem}
+.slider .top .pct{font-family:'Fraunces';font-weight:600;color:var(--coral-deep);font-size:.9rem}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:7px;border-radius:6px;
+  background:var(--sand-deep);outline:none;cursor:pointer}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:21px;height:21px;border-radius:50%;
+  background:var(--coral);border:3px solid #fff;box-shadow:var(--shadow-sm);cursor:pointer;transition:transform .15s}
+input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.18)}
+input[type=range]::-moz-range-thumb{width:21px;height:21px;border-radius:50%;background:var(--coral);
+  border:3px solid #fff;cursor:pointer}
+.reset{margin-top:6px;width:100%;font-family:'Outfit';font-weight:600;cursor:pointer;border:1.5px solid var(--sand-deep);
+  background:#fff;color:var(--ink-soft);padding:10px;border-radius:12px;transition:all .2s}
+.reset:hover{background:var(--sand);color:var(--ink)}
+.preset-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.preset{font-family:'Outfit';font-weight:600;font-size:.8rem;cursor:pointer;border:none;
+  background:var(--sand);color:var(--ink-soft);padding:8px 13px;border-radius:30px;transition:all .2s}
+.preset:hover{background:var(--coral);color:#fff}
+.ranklist{display:flex;flex-direction:column;gap:11px}
+.rl-item{display:grid;grid-template-columns:48px 1fr auto;gap:15px;align-items:center;
+  background:var(--cream);border:1px solid var(--sand-deep);border-radius:16px;padding:13px 17px;
+  transition:transform .4s,box-shadow .25s}
+.rl-item:hover{box-shadow:var(--shadow-sm);transform:translateX(4px)}
+.rl-item .num{font-family:'Fraunces';font-weight:800;font-size:1.5rem;color:var(--coral-deep);text-align:center}
+.rl-item .nm{font-weight:600;font-size:1.02rem}
+.rl-item .sub{font-size:.78rem;color:var(--ink-soft);display:flex;align-items:center;gap:7px;margin-top:2px}
+.rl-item .sc{text-align:right}
+.rl-item .sc b{font-family:'Fraunces';font-weight:800;font-size:1.3rem;display:block;line-height:1}
+.rl-item .sc span{font-size:.72rem;color:var(--ink-soft)}
+
+footer{background:var(--ocean-deep);color:#CFEFF0;padding:40px 0;font-size:.86rem}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;align-items:center}
+footer b{color:#fff;font-family:'Fraunces'}
+
+/* ---------- COMPARE + PIN ---------- */
+.pinbtn{font-family:'Outfit';font-weight:600;font-size:.78rem;cursor:pointer;border:1.5px solid var(--sand-deep);
+  background:#fff;color:var(--ink-soft);padding:5px 12px;border-radius:30px;transition:all .2s;display:inline-flex;align-items:center;gap:5px}
+.pinbtn:hover{border-color:var(--coral);color:var(--coral-deep)}
+.pinbtn.on{background:var(--coral);border-color:var(--coral);color:#fff}
+body.bar-open{padding-bottom:104px}
+
+#comparebar{position:fixed;left:0;right:0;bottom:0;z-index:60;transform:translateY(130%);
+  transition:transform .35s cubic-bezier(.4,0,.2,1);background:rgba(46,33,22,.97);
+  backdrop-filter:blur(8px);color:#FFE3A8;padding:13px 0;box-shadow:0 -14px 30px -18px rgba(0,0,0,.6)}
+#comparebar.show{transform:none}
+#comparebar .inner{display:flex;align-items:center;gap:11px;flex-wrap:wrap}
+#comparebar .cb-label{font-family:'Fraunces';font-weight:600;font-size:.95rem;color:#fff;flex:0 0 auto}
+.cb-chip{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.14);
+  padding:6px 7px 6px 13px;border-radius:30px;font-size:.83rem}
+.cb-chip button{background:rgba(255,255,255,.18);border:none;color:#fff;cursor:pointer;font-size:.72rem;
+  line-height:1;width:18px;height:18px;border-radius:50%;display:grid;place-items:center}
+.cb-go{margin-left:auto;background:var(--coral);color:#fff;border:none;font-family:'Outfit';font-weight:600;
+  font-size:.9rem;padding:11px 20px;border-radius:30px;cursor:pointer;transition:transform .2s;flex:0 0 auto}
+.cb-go:hover{transform:translateY(-2px)}
+.cb-go:disabled{opacity:.45;cursor:not-allowed;transform:none}
+
+#comparemodal{position:fixed;inset:0;z-index:80;display:none;align-items:center;justify-content:center;
+  padding:16px;background:rgba(33,24,16,.62);backdrop-filter:blur(4px)}
+#comparemodal.show{display:flex;animation:fade .25s}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+.cm-panel{background:var(--cream);border-radius:22px;max-width:960px;width:100%;max-height:88vh;overflow:auto;
+  box-shadow:var(--shadow);position:relative}
+.cm-head{position:sticky;top:0;background:var(--cream);padding:20px 22px 13px;
+  border-bottom:1px solid var(--sand-deep);z-index:2}
+.cm-head h2{font-size:1.55rem;font-weight:800}
+.cm-close{position:absolute;top:15px;right:17px;background:var(--sand);border:none;width:36px;height:36px;
+  border-radius:50%;font-size:1rem;cursor:pointer;color:var(--ink)}
+.cm-scroll{overflow-x:auto;padding:6px 6px 18px}
+.cm-table{width:100%;border-collapse:collapse;font-size:.9rem}
+.cm-table th,.cm-table td{padding:11px 14px;border-bottom:1px solid var(--sand-deep)}
+.cm-table thead th{font-family:'Fraunces';font-weight:600;font-size:1.02rem;vertical-align:bottom;text-align:center;color:var(--ink)}
+.cm-table thead th:first-child{text-align:left}
+.cm-table tbody th{font-weight:600;color:var(--ink-soft);text-align:left;white-space:nowrap}
+.cm-table td{text-align:center;font-weight:500;min-width:150px}
+.cm-table .best{background:#E0F4F1;font-weight:800;color:var(--ocean-deep)}
+.cm-bar{height:6px;background:var(--sand-deep);border-radius:5px;overflow:hidden;margin-top:5px}
+.cm-bar i{display:block;height:100%;background:linear-gradient(90deg,var(--mango),var(--coral))}
+
+@media(max-width:760px){
+  .region-head{grid-template-columns:1fr}.region-head .icon-big{display:none}
+  .builder-grid{grid-template-columns:1fr}.sliders{position:static}
+  .toolbar .hint{margin-left:0;width:100%}
+  .cards{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  .wrap{padding:0 16px}
+  .topbar{padding:15px 0}
+  .brand{font-size:1.04rem}.brand .mark{width:27px;height:27px}
+  .btn-build{font-size:.82rem;padding:9px 14px}
+  .btn-build .lng{display:none}.btn-build .shrt{display:inline}
+  .hero .sun{width:118px;height:118px;top:8%}
+  .hero-copy{padding:8px 0 86px}
+  .hero h1{font-size:clamp(2.3rem,9vw,3rem)}
+  .hero .stat-row{gap:16px 22px}
+  .hero .stat b{font-size:1.45rem}
+  .region-head h2{font-size:2rem}
+  .cb-go{margin-left:0;width:100%}
+  #comparebar .cb-label{width:100%}
+  .rl-item{grid-template-columns:38px 1fr;gap:11px}
+  .rl-item .sc{grid-column:2;text-align:left;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== HERO ===== -->
+<header class="hero">
+  <svg class="sun" viewBox="0 0 100 100" aria-hidden="true">
+    <circle cx="50" cy="50" r="22" fill="#FFF3C4"/>
+    <circle cx="50" cy="50" r="16" fill="#FFE07A"/>
+    <g stroke="#FFF3C4" stroke-width="3.4" stroke-linecap="round">
+      <line x1="50" y1="6" x2="50" y2="20"/><line x1="50" y1="80" x2="50" y2="94"/>
+      <line x1="6" y1="50" x2="20" y2="50"/><line x1="80" y1="50" x2="94" y2="50"/>
+      <line x1="19" y1="19" x2="29" y2="29"/><line x1="71" y1="71" x2="81" y2="81"/>
+      <line x1="81" y1="19" x2="71" y2="29"/><line x1="29" y1="71" x2="19" y2="81"/>
+    </g>
+  </svg>
+  <div class="wrap topbar">
+    <div class="brand">
+      <svg class="mark" viewBox="0 0 40 40"><path d="M20 3C12 12 8 20 8 27a12 12 0 0 0 24 0c0-7-4-15-12-24z" fill="#FF6F61"/><path d="M20 14c-4 5-6 9-6 13a6 6 0 0 0 12 0c0-4-2-8-6-13z" fill="#FFCF5C"/></svg>
+      Sun &amp; Sand
+    </div>
+    <button class="btn-build" onclick="go('build')"><span class="lng">⚖︎ Build Your Ideal Hotel</span><span class="shrt">⚖︎ Build</span></button>
+  </div>
+  <div class="wrap hero-copy">
+    <span class="kicker">A Family All-Inclusive Atlas</span>
+    <h1>Where the little ones nap<br><em>and the grown-ups play.</em></h1>
+    <p class="lede">22 all-inclusive resorts across four corners of Mexico — scored, ranked, and built for crews with toddlers in tow and a taste for the good life.</p>
+    <div class="stat-row">
+      <div class="stat"><b>22</b><span>resorts compared</span></div>
+      <div class="stat"><b>4</b><span>coastal regions</span></div>
+      <div class="stat"><b>8</b><span>things that matter</span></div>
+      <div class="stat"><b>∞</b><span>ways to rank them</span></div>
+    </div>
+  </div>
+  <svg class="scenery" viewBox="0 0 1440 220" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 90 Q360 40 720 90 T1440 90 V220 H0 Z" fill="#0C7A86"/>
+    <path d="M0 130 Q360 90 720 130 T1440 130 V220 H0 Z" fill="#08545C" opacity=".7"/>
+    <g opacity=".95">
+      <path d="M120 200 C118 150 120 120 128 96 C108 104 92 120 86 140 C96 116 110 100 130 92 C120 70 104 56 86 50 C112 52 130 66 138 88 C150 64 172 52 196 52 C168 60 150 78 142 100 C162 96 184 102 198 118 C176 106 154 106 136 118 C140 142 138 172 138 200 Z" fill="#2E8B57"/>
+    </g>
+  </svg>
+</header>
+
+<!-- ===== RIBBON ===== -->
+<div class="ribbon-shell">
+  <nav class="ribbon" id="ribbon"></nav>
+</div>
+
+<main class="wrap" id="main"></main>
+
+<div id="comparebar"></div>
+<div id="comparemodal"></div>
+
+<footer>
+  <div class="wrap">
+    <span>Built with sunscreen optimism · prices are mid-season family-of-4 estimates — verify for your dates.</span>
+    <b>Sun &amp; Sand · 2026</b>
+  </div>
+</footer>
+
+<script>
+/* ============ DATA ============ */
+const CRITERIA=[
+  {k:'u4', label:'Under-4 care', w:22},
+  {k:'adult', label:'Adult fun', w:18},
+  {k:'dining', label:'Dining', w:13},
+  {k:'kids', label:'Kids club 4–5', w:12},
+  {k:'pools', label:'Pools & splash', w:12},
+  {k:'beach', label:'Swimmable beach', w:10},
+  {k:'suites', label:'Group suites', w:8},
+  {k:'spa', label:'Spa', w:5},
+];
+
+const REGIONS=[
+ {id:'cancun', name:'Cancún', cls:'r-cancun', acls:'a-cancun', color:'#2FBCCB',
+  eyebrow:'Caribbean Coast · Quintana Roo',
+  blurb:'Powder-white sand, glassy turquoise shallows, and a Hotel Zone that swings from sandcastles by day to live music by night. The calm, wade-in Caribbean is about as toddler-friendly as water gets — and you’re a short hop from Isla Mujeres, jungle cenotes, and the Maya ruins at Tulum and Chichén Itzá.',
+  known:['Calm swimmable Caribbean','Hotel-Zone nightlife','Cenotes & Maya ruins','Isla Mujeres day trips'],
+  climate:[
+   {s:'Dec–Apr',t:'Peak season. Warm & dry, 75–85°F, low humidity, bluest water.'},
+   {s:'May–Jun',t:'Hot, humidity building; sargassum seaweed can wash up.'},
+   {s:'Jul–Oct',t:'Hot & humid, afternoon storms; hurricane odds highest Aug–Oct.'},
+   {s:'Nov',t:'Lovely shoulder — thinner crowds, softer prices.'}],
+  subs:['Cancún Hotel Zone']},
+
+ {id:'pdc', name:'Playa del Carmen', cls:'r-pdc', acls:'a-pdc', color:'#3AA66B',
+  eyebrow:'Riviera Maya · Quintana Roo',
+  blurb:'Cancún’s bohemian-chic little sister. The pedestrian Quinta Avenida is wall-to-wall cafés, mezcal bars and boutiques, while just outside town sit jungle cenotes, the Xcaret eco-parks and the Cozumel dive ferry. Same dreamy Caribbean water, a notch more laid-back.',
+  known:['5th Avenue strip','Xcaret & Xel-Há parks','Jungle cenotes','Cozumel diving'],
+  climate:[
+   {s:'Dec–Apr',t:'Prime. Sunny & dry, 76–85°F, gentle breeze.'},
+   {s:'May–Jun',t:'Warming up, humidity climbing; possible sargassum.'},
+   {s:'Jul–Oct',t:'Tropical & wet — short heavy storms; hurricane season.'},
+   {s:'Nov',t:'Quiet, green and warm before the high-season rush.'}],
+  subs:['Playa del Carmen / Playacar','Riviera Maya']},
+
+ {id:'cabo', name:'Los Cabos', cls:'r-cabo', acls:'a-cabo', color:'#FFA63D',
+  eyebrow:'Baja California Sur · Pacific',
+  blurb:'Where the Sonoran desert crashes into the sea at the tip of Baja. Think the iconic El Arco rock arch, world-class sportfishing and golf, raucous Cabo San Lucas marina nightlife, and gray whales breaching all winter. Two coasts: the wild, mostly un-swimmable Pacific and the calmer Sea-of-Cortez coves along the Corridor.',
+  known:['El Arco & marina nightlife','Whale watching (Dec–Apr)','Golf & sportfishing','Desert-meets-sea drama'],
+  climate:[
+   {s:'Nov–May',t:'Glorious & dry, 70s–80s, ~350 days of sun. Whales Dec–Apr.'},
+   {s:'Jun–Aug',t:'Hot (90s+), humidity creeping in, warm sea.'},
+   {s:'Sep',t:'Peak hurricane/chubasco month — watch the forecast.'},
+   {s:'Year-round',t:'Far less rain than the Caribbean; sunscreen is non-negotiable.'}],
+  subs:['Cabo San Lucas','Tourist Corridor','San José del Cabo']},
+
+ {id:'pv', name:'Puerto Vallarta–Nayarit', cls:'r-pv', acls:'a-pv', color:'#D33C7A',
+  eyebrow:'Banderas Bay · Jalisco & Nayarit',
+  blurb:'Lush Sierra Madre jungle tumbling into Banderas Bay — the warmest swimmable water on Mexico’s Pacific. Wander PV’s Malecón and buzzy Zona Romántica, then spread north through Nuevo Vallarta’s mega-resorts to the luxe point at Punta Mita and boho-surf Sayulita. Humpbacks cruise the bay all winter.',
+  known:['Malecón & Zona Romántica','Warm swimmable Pacific','Punta Mita & Sayulita','Humpback whales (Dec–Mar)','Marietas Islands'],
+  climate:[
+   {s:'Nov–Apr',t:'Prime — dry, sunny, 80s, low humidity. Whales Dec–Mar.'},
+   {s:'May–Jun',t:'Heating up, last of the dry days before the rains.'},
+   {s:'Jul–Oct',t:'Rainy season — hot, humid, jungle-green, afternoon thunderstorms.'},
+   {s:'Aug–Oct',t:'Hurricanes rarer here than the Caribbean, but watch late summer.'}],
+  subs:['Puerto Vallarta','Nuevo Vallarta','Punta Mita']},
+];
+
+// scores: u4,adult,dining,kids,pools,beach,suites,spa
+const R=(name,macro,sub,area,s,price,note)=>({name,macro,sub,area,
+  s:{u4:s[0],adult:s[1],dining:s[2],kids:s[3],pools:s[4],beach:s[5],suites:s[6],spa:s[7]},price,note});
+
+const HOTELS=[
+ R('Club Med Cancún','cancun','Cancún Hotel Zone','Cancún',[5,4,4,5,4,5,4,4],450,'Baby Club 4–23 mo + Petit/Mini clubs + beeper babysitting. Calm swimmable Caribbean. Adults-only nightclub.'),
+ R('Hotel Xcaret México · Casa Espiral','pdc','Riviera Maya','Riviera Maya',[4,5,5,4,5,4,4,4],850,'All-Fun Inclusive = unlimited Grupo Xcaret parks + transport. Kids Club 4–12 (drop-off to 10pm); Lunateca 0–4 parent-accompanied; in-room sitting ~$15/hr. HA fine dining. Price bundles park access (~$140+/pp/day value).'),
+ R('Grand Velas Riviera Maya','pdc','Riviera Maya','Riviera Maya',[4,4,5,4,4,4,5,5],1300,'AAA 5-Diamond. In-room babysitting + Baby Concierge; superb family suites. Cocina de Autor fine dining. Calm Caribbean beach. 10 min to 5th Ave. Per-person pricing.'),
+ R('Grand Velas Riviera Nayarit','pv','Nuevo Vallarta','Nuevo Vallarta',[4,4,5,4,4,4,5,5],1300,'AAA 5-Diamond, Nuevo Vallarta. Kids club + baby amenities; swim-up suites; top dining; huge spa. Gentle, swimmable Banderas Bay beach. Per-person pricing.'),
+ R('Grand Velas Los Cabos','cabo','Tourist Corridor','Los Cabos',[4,4,5,4,4,3,4,5],1300,'AAA 5-Diamond. In-suite baby gear + nanny. Michelin restaurant (Cocina de Autor). Beach has strong currents.'),
+ R('Paradisus Playa del Carmen','pdc','Playa del Carmen / Playacar','Playa del Carmen',[4,4,4,4,4,4,4,4],420,'Family Concierge; baby care from 12 mo (9am–10pm). On the beach + walk to 5th Ave nightlife. Solid all-rounder.'),
+ R('Hard Rock Vallarta','pv','Nuevo Vallarta','Nuevo Vallarta',[3,5,4,4,4,4,4,4],450,'Hard Rock nightlife & energy; water slides; Ultimate Playtime sitting from 6 mo. Swimmable Banderas Bay beach. 1 & 2-BR suites.'),
+ R('Hard Rock Cancún','cancun','Cancún Hotel Zone','Cancún',[3,5,4,4,4,4,4,4],520,'Sitting from 6 mo (~$300/stay). Best party energy. FlowRider + waterpark. ⚠ Closed for renovation Aug 3–Dec 16, 2026 — avoid that window.'),
+ R('Iberostar Selection Playa Mita','pv','Punta Mita','Punta Mita',[3,4,4,4,5,4,4,4],400,'Punta Mita (~40 min from PVR, isolated). Aqua Fun water park + Star Camp 4–12; under-3s need a parent. Free cribs; babysitting (surcharge). Rooftop bar, nightclub, golf, hydrotherapy spa. Calmer bay beach. Your SIL’s pick.'),
+ R('Hard Rock Los Cabos','cabo','Cabo San Lucas','Cabo San Lucas',[3,5,4,4,5,2,4,4],470,'Cabo San Lucas (Pacific — NOT swimmable; lifeguards enforce). Roxity Kids Club 4–12 + nanny (48-hr notice). 6 pools, 5 swim-up bars, slides, foam parties, adults-only Echo pool, bowling. Big nightlife.'),
+ R('Grand Palladium Vallarta','pv','Punta Mita','Punta Mita',[3,4,4,4,4,4,5,4],400,'Punta Mita. Mini Club 4–12 + Raggs kids program; babysitting (surcharge). Family Selection (hotel-within-hotel 2-BR suites — great for groups). Daily live music/DJs/theater. Water park, private calmer beach.'),
+ R('Garza Blanca / Villa del Palmar Cancún','cancun','Cancún Hotel Zone','Cancún',[4,3,4,4,4,4,4,4],420,'In-room sitting 0 mo+ ($35–45/hr). Kids club open to 10pm = easy adult dinners. Quieter, spa-led.'),
+ R('Dreams Los Cabos','cabo','Tourist Corridor','Los Cabos',[4,3,4,4,4,4,4,4],420,'Corridor, Sea of Cortez (one of the calmer swimmable stretches). Explorer’s Club ages 3–12 (drop-off from 3!) + babysitting. Preferred Club adult lounge/pool. Solid all-rounder.'),
+ R('Meliá Puerto Vallarta','pv','Puerto Vallarta','Puerto Vallarta',[5,3,3,4,4,4,3,3],300,'Standout under-4: Baby Rock Club 4 mo–4 yr (drop-off) + in-room sitters. Family-heavy, lower nightlife. Beachfront, Marina area. Best raw value on the list. Verify Baby Rock hours.'),
+ R('Paradisus Los Cabos','cabo','San José del Cabo','San José del Cabo',[3,4,4,4,4,4,4,4],430,'San José corridor, near one of Cabo’s few swimmable beaches. Family Concierge + kids club + babysitting + indoor play. 6 pools, YHI spa. Upper-mid.'),
+ R('Hyatt Ziva Puerto Vallarta','pv','Puerto Vallarta','Puerto Vallarta',[3,4,4,4,4,4,4,4],450,'Private Las Estacas cove (swimmable, small beach). Adults-only pool + swim-up bar; KidZ Club; paid under-4 sitting; 10 venues. 10 min to PV nightlife.'),
+ R('Hyatt Ziva Cancún','cancun','Cancún Hotel Zone','Cancún',[3,4,4,4,4,4,4,4],480,'Turquoize adults-only tower + rooftop adult pool + swim-up bar. Paid sitting on request. Calm beach.'),
+ R('Garza Blanca Los Cabos','cabo','Cabo San Lucas','Cabo San Lucas',[4,3,4,4,4,3,4,4],480,'In-room sitting 0 mo+ ($35–45/hr). Quieter, spa-led. Cabo Pacific side, limited swimming.'),
+ R('Pueblo Bonito Rosé','cabo','Cabo San Lucas','Cabo San Lucas',[3,4,4,3,4,5,3,4],430,'On Médano Beach (swimmable!) + walk to town/bars. Paid sitting. Less on-site polish.'),
+ R('Hyatt Ziva Los Cabos','cabo','San José del Cabo','San José del Cabo',[3,4,4,4,4,2,4,4],560,'Un-swimmable surf. Adults-only pool + Baja swim-up bar. Toddler splash pool. 30 min from town.'),
+ R('Riu Palace Cabo San Lucas','cabo','Cabo San Lucas','Cabo San Lucas',[2,5,3,4,4,4,3,3],380,'On Médano Beach (swimmable) + walk to Cabo nightlife. RiuLand 4–12; weak under-4 care. Party/lively, slides, 24-hr AI. Budget-mid — great adult-fun value, not ideal for 1–3 yos.'),
+ R('Panama Jack Playa del Carmen','pdc','Playa del Carmen / Playacar','Playa del Carmen',[3,4,3,4,3,4,3,3],350,'Beachfront, steps from 5th Ave nightlife. Kids club + paid babysitting. Mid-tier; strong location & value, fewer frills.'),
+];
+
+/* ============ SVG ART ============ */
+const ICONS={
+ cancun:`<svg viewBox="0 0 64 64"><path d="M32 8 14 52h36L32 8z" fill="#0C7A86"/><path d="M32 8 23 30h18L32 8z" fill="#2FBCCB"/><rect x="26" y="40" width="12" height="12" fill="#FFCF5C"/><path d="M10 52h44" stroke="#08545C" stroke-width="3" stroke-linecap="round"/></svg>`,
+ pdc:`<svg viewBox="0 0 64 64"><ellipse cx="32" cy="38" rx="20" ry="14" fill="#3AA66B"/><circle cx="24" cy="34" r="4" fill="#FFF4E4"/><circle cx="40" cy="34" r="4" fill="#FFF4E4"/><circle cx="24" cy="34" r="2" fill="#33261A"/><circle cx="40" cy="34" r="2" fill="#33261A"/><path d="M18 26c4-8 24-8 28 0" stroke="#2E8B57" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M14 44l-6 4M50 44l6 4" stroke="#3AA66B" stroke-width="4" stroke-linecap="round"/></svg>`,
+ cabo:`<svg viewBox="0 0 64 64"><path d="M6 50h52" stroke="#0C7A86" stroke-width="4" stroke-linecap="round"/><path d="M14 50c0-16 6-30 14-30 0 0-6 10-2 16 8-2 14 4 14 14" fill="#FFA63D"/><path d="M40 50c0-8 4-16 10-16s8 8 8 16" fill="#FF8A4B"/><circle cx="48" cy="20" r="6" fill="#FFCF5C"/></svg>`,
+ pv:`<svg viewBox="0 0 64 64"><path d="M6 28l12-12 10 10 8-8 14 14" fill="none" stroke="#2E8B57" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 44c8-6 16-6 22 0 6-6 14-6 22 0v6c-8-4-16-4-22 2-6-6-14-6-22-2z" fill="#D33C7A"/><path d="M44 40c4-3 9-3 12 0-1 4-5 6-8 4" fill="#ef6aa0"/></svg>`,
+};
+const LEAF=`<svg viewBox="0 0 120 120"><path d="M60 115C58 70 60 40 70 14 45 24 24 46 18 76 30 44 48 24 72 12 56-8 30-12 6 0 38-2 60 14 70 38 88 32 108 40 118 60 96 44 74 44 56 60 60 86 58 110 60 115z" fill="#ffffff"/></svg>`;
+const BLOB=`<svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="26" fill="#FFA63D"/></svg>`;
+
+/* ============ LOGIC ============ */
+let state={view:'cancun', sub:'all', compare:[], weights:Object.fromEntries(CRITERIA.map(c=>[c.k,c.w]))};
+
+function totalW(){return CRITERIA.reduce((a,c)=>a+state.weights[c.k],0)||1;}
+function weighted(h){let s=0;CRITERIA.forEach(c=>s+=state.weights[c.k]*h.s[c.k]);return s/totalW();}
+function value(h){return weighted(h)/h.price*100;}
+function globalRanks(){
+  const arr=HOTELS.map(h=>({h,w:weighted(h)})).sort((a,b)=>b.w-a.w);
+  const m=new Map();let rank=0,prev=null,i=0;
+  arr.forEach(o=>{i++;if(prev===null||o.w<prev-1e-9){rank=i;prev=o.w;}m.set(o.h.name,rank);});
+  return m;
+}
+
+/* ribbon */
+function buildRibbon(){
+  const rb=document.getElementById('ribbon');
+  rb.innerHTML=REGIONS.map(r=>`<button class="rib ${r.cls}" data-v="${r.id}">${ICONS[r.id]}${r.name}</button>`).join('')
+    +`<button class="rib r-build" data-v="build">⚖︎ Build Your Ideal Hotel</button>`;
+  rb.querySelectorAll('.rib').forEach(b=>b.onclick=()=>go(b.dataset.v));
+}
+function go(v){ if(viewFromHash()===v){applyView(v,true);} else {location.hash=v;} }
+function viewFromHash(){const h=location.hash.replace('#','');return ['cancun','pdc','cabo','pv','build'].includes(h)?h:'cancun';}
+function setRibbonActive(v){document.querySelectorAll('.rib').forEach(b=>b.classList.toggle('active',b.dataset.v===v));}
+function applyView(v,scroll){state.view=v;state.sub='all';setRibbonActive(v);render();
+  if(scroll){const y=document.querySelector('.ribbon-shell').offsetTop-2;window.scrollTo({top:y,behavior:'smooth'});}}
+
+/* ---- compare ---- */
+function toggleCompare(name){
+  const i=state.compare.indexOf(name);
+  if(i>-1)state.compare.splice(i,1);
+  else{if(state.compare.length>=3)return; state.compare.push(name);}
+  render();
+}
+function attachPins(){document.querySelectorAll('[data-pin]').forEach(b=>b.onclick=()=>toggleCompare(b.dataset.pin));}
+function afterRender(){attachPins();renderCompareBar();}
+function renderCompareBar(){
+  const bar=document.getElementById('comparebar');
+  if(!state.compare.length){bar.classList.remove('show');document.body.classList.remove('bar-open');bar.innerHTML='';return;}
+  const chips=state.compare.map(n=>`<span class="cb-chip">${n}<button data-rm="${n}" aria-label="remove">✕</button></span>`).join('');
+  bar.innerHTML=`<div class="wrap inner"><span class="cb-label">Compare ${state.compare.length}/3</span>${chips}<button class="cb-go" ${state.compare.length<2?'disabled':''} onclick="openCompare()">Compare side by side →</button></div>`;
+  bar.classList.add('show');document.body.classList.add('bar-open');
+  bar.querySelectorAll('[data-rm]').forEach(b=>b.onclick=()=>toggleCompare(b.dataset.rm));
+}
+function openCompare(){
+  if(state.compare.length<2)return;
+  const items=state.compare.map(n=>HOTELS.find(h=>h.name===n)).filter(Boolean);
+  const rows=[
+    {label:'Overall match',f:h=>weighted(h),fmt:v=>v.toFixed(2)+' / 5',best:'max'},
+    {label:'Price / night',f:h=>h.price,fmt:v=>'$'+v,best:'min'},
+    {label:'Value / $100',f:h=>value(h),fmt:v=>v.toFixed(2),best:'max'},
+  ].concat(CRITERIA.map(c=>({label:c.label,f:h=>h.s[c.k],fmt:v=>v.toFixed(0)+' / 5',best:'max',bar:true})));
+  const head=`<tr><th></th>${items.map(h=>`<th>${h.name}<br><span style="font-weight:400;font-size:.78rem;color:var(--ink-soft)">${h.area}</span></th>`).join('')}</tr>`;
+  const bodyRow=r=>{
+    const vals=items.map(r.f);
+    const best=r.best==='max'?Math.max(...vals):r.best==='min'?Math.min(...vals):null;
+    const cells=items.map((h,i)=>{
+      const v=vals[i],isBest=best!==null&&Math.abs(v-best)<1e-9;
+      const bar=r.bar?`<div class="cm-bar"><i style="width:${v/5*100}%"></i></div>`:'';
+      return `<td class="${isBest?'best':''}">${r.fmt(v)}${bar}</td>`;
+    }).join('');
+    return `<tr><th>${r.label}</th>${cells}</tr>`;
+  };
+  const noteRow=`<tr><th>The lowdown</th>${items.map(h=>`<td style="text-align:left;font-size:.79rem;color:var(--ink-soft);font-weight:400;min-width:200px">${h.note}</td>`).join('')}</tr>`;
+  const minw=170+items.length*180;
+  document.getElementById('comparemodal').innerHTML=`<div class="cm-panel">
+    <div class="cm-head"><h2>Side by side</h2><button class="cm-close" onclick="closeCompare()">✕</button></div>
+    <div class="cm-scroll"><table class="cm-table" style="min-width:${minw}px">
+      <thead>${head}</thead><tbody>${rows.map(bodyRow).join('')}${noteRow}</tbody></table></div>
+   </div>`;
+  document.getElementById('comparemodal').classList.add('show');
+}
+function closeCompare(){document.getElementById('comparemodal').classList.remove('show');}
+
+/* card */
+function cardHTML(h,rankMap){
+  const reg=REGIONS.find(r=>r.id===h.macro);
+  const w=weighted(h), match=Math.round(w*20), val=value(h).toFixed(2), rank=rankMap.get(h.name);
+  const crit=CRITERIA.map(c=>`<div class="row"><span class="lab">${c.label}</span><span class="bar"><i style="width:${h.s[c.k]/5*100}%"></i></span></div>`).join('');
+  return `<article class="card">
+    <div class="card-top ${reg.acls}">
+      <span class="rankbadge">#${rank} overall</span>
+      <div class="leaf">${LEAF}</div>
+      <div class="area">${h.area}</div>
+      <h3>${h.name}</h3>
+      <div class="scoreline"><span class="big">${w.toFixed(2)}</span><span class="of">/ 5 match</span></div>
+      <div class="matchbar"><i style="width:${match}%"></i></div>
+    </div>
+    <div class="card-body">
+      <div class="meta-row">
+        <span class="pill price">~$${h.price}/night</span>
+        <span class="pill value">value ${val}/$100</span>
+        <span class="pill">${h.sub}</span>
+        <button class="pinbtn ${state.compare.includes(h.name)?'on':''}" data-pin="${h.name}">${state.compare.includes(h.name)?'✓ Comparing':'＋ Compare'}</button>
+      </div>
+      <div class="crit">${crit}</div>
+      <p class="note">${h.note}</p>
+    </div>
+  </article>`;
+}
+
+function renderRegion(){
+  const r=REGIONS.find(x=>x.id===state.view);
+  const subOpts=['<option value="all">All sub-regions</option>'].concat(r.subs.map(s=>`<option value="${s}"${state.sub===s?' selected':''}>${s}</option>`)).join('');
+  const climate=r.climate.map(c=>`<div class="cl-card"><div class="blob">${BLOB}</div><div class="span">${c.s}</div><div class="txt">${c.t}</div></div>`).join('');
+  const list=HOTELS.filter(h=>h.macro===r.id && (state.sub==='all'||h.sub===state.sub)).sort((a,b)=>weighted(b)-weighted(a));
+  const rankMap=globalRanks();
+  const cards=list.map((h,i)=>cardHTML(h,rankMap)).join('');
+  document.getElementById('main').innerHTML=`
+   <div class="region-head">
+     <div>
+       <span class="eyebrow">${r.eyebrow}</span>
+       <h2>${r.name}</h2>
+       <p class="blurb">${r.blurb}</p>
+       <div class="known">${r.known.map(k=>`<span>${k}</span>`).join('')}</div>
+     </div>
+     <div class="icon-big">${ICONS[r.id]}</div>
+   </div>
+   <div class="climate">
+     <h3>☀︎ When to go</h3>
+     <div class="climate-grid">${climate}</div>
+   </div>
+   <div class="toolbar">
+     <label for="subsel">Zoom in:</label>
+     <select id="subsel">${subOpts}</select>
+     <span class="hint"><span class="dot" style="background:${r.color}"></span>${list.length} resort${list.length!==1?'s':''} · ranked by your current priorities</span>
+   </div>
+   <div class="cards">${cards}</div>`;
+  const sel=document.getElementById('subsel');
+  sel.onchange=()=>{state.sub=sel.value;renderRegion();};
+  stagger();afterRender();
+}
+
+function renderBuilder(){
+  const sliders=CRITERIA.map(c=>{
+    const pct=Math.round(state.weights[c.k]/totalW()*100);
+    return `<div class="slider">
+      <div class="top"><b>${c.label}</b><span class="pct">${pct}%</span></div>
+      <input type="range" min="0" max="30" value="${state.weights[c.k]}" data-k="${c.k}">
+    </div>`;}).join('');
+  const rankMap=globalRanks();
+  const ranked=[...HOTELS].sort((a,b)=>weighted(b)-weighted(a));
+  const items=ranked.map(h=>{
+    const reg=REGIONS.find(r=>r.id===h.macro);
+    return `<div class="rl-item">
+      <div class="num">${rankMap.get(h.name)}</div>
+      <div><div class="nm">${h.name}</div><div class="sub"><span class="dot" style="background:${reg.color}"></span>${h.area} · ${h.sub}</div></div>
+      <div class="sc"><b>${weighted(h).toFixed(2)}</b><span>~$${h.price} · val ${value(h).toFixed(2)}</span><button class="pinbtn ${state.compare.includes(h.name)?'on':''}" data-pin="${h.name}" style="margin-top:7px">${state.compare.includes(h.name)?'✓':'＋ Compare'}</button></div>
+    </div>`;}).join('');
+  document.getElementById('main').innerHTML=`
+   <div class="region-head"><div>
+     <span class="eyebrow">Make it yours</span>
+     <h2>Build Your Ideal Hotel</h2>
+     <p class="blurb builder-intro">Every family weighs these differently. Drag the sliders to tell us what matters — chasing nightlife, obsessed with infant care, hunting the best beach — and the whole list of 22 re-ranks instantly. Percentages auto-normalize, so don’t worry about making them add up.</p>
+   </div></div>
+   <div class="builder-grid">
+     <div class="sliders">
+       <div class="preset-row">
+         <button class="preset" data-p="default">Reset to default</button>
+         <button class="preset" data-p="littles">All about the littles</button>
+         <button class="preset" data-p="party">Grown-up fun</button>
+         <button class="preset" data-p="value">Best beach + value</button>
+       </div>
+       ${sliders}
+       <button class="reset" data-p="default">↺ Reset weights</button>
+     </div>
+     <div class="ranklist">${items}</div>
+   </div>`;
+  document.querySelectorAll('input[type=range]').forEach(inp=>inp.oninput=()=>{
+    state.weights[inp.dataset.k]=+inp.value;renderBuilder();});
+  document.querySelectorAll('[data-p]').forEach(b=>b.onclick=()=>applyPreset(b.dataset.p));
+  afterRender();
+}
+
+function applyPreset(p){
+  const presets={
+    default:Object.fromEntries(CRITERIA.map(c=>[c.k,c.w])),
+    littles:{u4:30,adult:6,dining:8,kids:20,pools:18,beach:14,suites:10,spa:2},
+    party:{u4:8,adult:30,dining:18,kids:6,pools:10,beach:10,suites:6,spa:10},
+    value:{u4:14,adult:12,dining:8,kids:10,pools:14,beach:26,suites:6,spa:4},
+  };
+  state.weights={...presets[p]};renderBuilder();
+}
+
+function render(){state.view==='build'?renderBuilder():renderRegion();}
+function stagger(){document.querySelectorAll('.card').forEach((c,i)=>c.style.animationDelay=(i*60)+'ms');}
+
+buildRibbon();
+document.getElementById('comparemodal').onclick=e=>{if(e.target.id==='comparemodal')closeCompare();};
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeCompare();});
+window.addEventListener('hashchange',()=>applyView(viewFromHash(),true));
+applyView(viewFromHash(),false);
+</script>
+</body>
+</html>
