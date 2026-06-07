@@ -149,6 +149,7 @@ main{padding:46px 0 80px;min-height:60vh}
 .crit .lab{font-size:.74rem;color:var(--ink-soft);width:78px;flex:0 0 auto}
 .crit .bar{flex:1;height:6px;background:var(--sand-deep);border-radius:5px;overflow:hidden}
 .crit .bar i{display:block;height:100%;border-radius:5px;background:linear-gradient(90deg,var(--mango),var(--coral))}
+.crit .cscore{font-size:.72rem;font-weight:700;color:var(--ink-soft);width:22px;text-align:right;flex:0 0 auto;font-variant-numeric:tabular-nums}
 .note{font-size:.85rem;color:var(--ink-soft);border-top:1px dashed var(--sand-deep);padding-top:11px}
 .carousel{position:relative;margin-top:14px;border-radius:14px;overflow:hidden;background:var(--sand);
   box-shadow:inset 0 0 0 1px rgba(0,0,0,.05)}
@@ -172,6 +173,22 @@ main{padding:46px 0 80px;min-height:60vh}
   font-size:.82rem;color:var(--ocean-deep);text-decoration:none;border:1.5px solid var(--turq);
   padding:8px 15px;border-radius:30px;transition:all .2s}
 .sitelink:hover{background:var(--turq);color:#fff;transform:translateY(-1px)}
+.card-links{display:flex;flex-wrap:wrap;gap:9px;margin-top:2px}
+.bookbtn{display:inline-flex;align-items:center;gap:6px;align-self:flex-start;font-family:'Outfit';font-weight:700;
+  font-size:.82rem;color:#fff;text-decoration:none;background:var(--coral);border:1.5px solid var(--coral);
+  padding:8px 16px;border-radius:30px;transition:all .2s}
+.bookbtn:hover{background:var(--coral-deep);border-color:var(--coral-deep);transform:translateY(-1px)}
+.tripbar{display:flex;flex-wrap:wrap;align-items:flex-end;gap:12px 16px;background:#fff;border:1.5px solid var(--sand-deep);
+  border-radius:16px;padding:15px 18px;margin-bottom:22px;box-shadow:0 4px 18px rgba(80,50,20,.05)}
+.tripbar .tb-lead{font-family:'Fraunces';font-weight:700;font-size:1rem;color:var(--ink);align-self:center;margin-right:2px}
+.tb-field{display:flex;flex-direction:column;gap:4px}
+.tb-field.sm{max-width:84px}
+.tb-field label{font-size:.66rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-soft)}
+.tb-field input,.tb-field select{font-family:'Outfit';font-size:.9rem;color:var(--ink);background:var(--sand);
+  border:1.5px solid var(--sand-deep);border-radius:10px;padding:9px 11px;min-height:42px}
+.tb-field input:focus,.tb-field select:focus{outline:none;border-color:var(--turq)}
+.tb-note{flex:1 1 100%;font-size:.74rem;color:var(--ink-soft)}
+@media(max-width:600px){.tripbar{gap:10px 12px;padding:13px}.tb-field{flex:1 1 40%}.tb-field.sm{flex:1 1 40%;max-width:none}.tb-lead{flex:1 1 100%}}
 
 /* ---------- HOME TILES ---------- */
 .rib.active.r-home{background:linear-gradient(120deg,var(--coral),var(--mango))}
@@ -490,28 +507,26 @@ const R=(name,macro,sub,area,s,price,note)=>({name,macro,sub,area,
   s:{u4:s[0],adult:s[1],dining:s[2],kids:s[3],pools:s[4],beach:s[5],suites:s[6],spa:s[7]},price,note});
 
 const HOTELS=[
- R('Club Med Cancún','cancun','Cancún Hotel Zone','Cancún',[5,4,3,5,3,5,4,3],450,'Baby Club 4–23 mo + Petit/Mini clubs + beeper babysitting. Calm swimmable Caribbean. Adults-only nightclub.'),
- R('Hotel Xcaret México · Casa Espiral','pdc','Riviera Maya','Riviera Maya',[4,5,5,5,5,3,4,4],850,'All-Fun Inclusive = unlimited Grupo Xcaret parks + transport. Kids Club 4–12 (drop-off to 10pm); Lunateca 0–4 parent-accompanied; in-room sitting ~$15/hr. HA fine dining. Price bundles park access (~$140+/pp/day value).'),
- R('Grand Velas Riviera Maya','pdc','Riviera Maya','Riviera Maya',[4,4,5,4,4,4,5,5],1300,'AAA 5-Diamond. In-room babysitting + Baby Concierge; superb family suites. Cocina de Autor fine dining. Calm Caribbean beach. 10 min to 5th Ave. Per-person pricing.'),
- R('Grand Velas Riviera Nayarit','pv','Nuevo Vallarta','Nuevo Vallarta',[4,4,5,4,4,4,5,5],1300,'AAA 5-Diamond, Nuevo Vallarta. Kids club + baby amenities; swim-up suites; top dining; huge spa. Gentle, swimmable Banderas Bay beach. Per-person pricing.'),
- R('Grand Velas Los Cabos','cabo','Tourist Corridor','Los Cabos',[4,4,5,4,4,2,5,5],1300,'AAA 5-Diamond. In-suite baby gear + nanny. Michelin restaurant (Cocina de Autor). Beach has strong currents.'),
- R('Paradisus Playa del Carmen','pdc','Playa del Carmen / Playacar','Playa del Carmen',[4,4,4,4,4,4,4,4],420,'Family Concierge; baby care from 12 mo (9am–10pm). On the beach + walk to 5th Ave nightlife. Solid all-rounder.'),
- R('Hard Rock Vallarta','pv','Nuevo Vallarta','Nuevo Vallarta',[3,5,4,4,4,4,4,4],450,'Hard Rock nightlife & energy; water slides; Ultimate Playtime sitting from 6 mo. Swimmable Banderas Bay beach. 1 & 2-BR suites.'),
- R('Hard Rock Cancún','cancun','Cancún Hotel Zone','Cancún',[3,5,4,4,5,4,4,4],520,'Sitting from 6 mo (~$300/stay). Best party energy. FlowRider + waterpark. ⚠ Closed for renovation Aug 3–Dec 16, 2026 — avoid that window.'),
- R('Iberostar Selection Playa Mita','pv','Punta Mita','Punta Mita',[3,3,4,4,5,4,4,4],400,'Punta Mita (~40 min from PVR, isolated). Aqua Fun water park + Star Camp 4–12; under-3s need a parent. Free cribs; babysitting (surcharge). Rooftop bar, nightclub, golf, hydrotherapy spa. Calmer bay beach.'),
- R('Hard Rock Los Cabos','cabo','Cabo San Lucas','Cabo San Lucas',[3,5,4,4,5,1,4,4],470,'Cabo San Lucas (Pacific — NOT swimmable; lifeguards enforce). Roxity Kids Club 4–12 + nanny (48-hr notice). 6 pools, 5 swim-up bars, slides, foam parties, adults-only Echo pool, bowling. Big nightlife.'),
- R('Grand Palladium Vallarta','pv','Punta Mita','Punta Mita',[3,4,4,4,4,4,5,4],400,'Punta Mita. Mini Club 4–12 + Raggs kids program; babysitting (surcharge). Family Selection (hotel-within-hotel 2-BR suites — great for groups). Daily live music/DJs/theater. Water park, private calmer beach.'),
- R('Garza Blanca / Villa del Palmar Cancún','cancun','Cancún Hotel Zone','Cancún',[4,3,4,4,4,4,5,4],420,'In-room sitting 0 mo+ ($35–45/hr). Kids club open to 10pm = easy adult dinners. Quieter, spa-led.'),
- R('Dreams Los Cabos','cabo','Tourist Corridor','Los Cabos',[4,3,4,4,3,3,3,3],420,'Corridor, Sea of Cortez (one of the calmer swimmable stretches). Explorer’s Club ages 3–12 (drop-off from 3!) + babysitting. Preferred Club adult lounge/pool. Solid all-rounder.'),
- R('Meliá Puerto Vallarta','pv','Puerto Vallarta','Puerto Vallarta',[5,3,3,4,3,3,3,3],300,'Standout under-4: Baby Rock Club 4 mo–4 yr (drop-off) + in-room sitters. Family-heavy, lower nightlife. Beachfront, Marina area. Best raw value on the list. Verify Baby Rock hours.'),
- R('Paradisus Los Cabos','cabo','San José del Cabo','San José del Cabo',[3,3,4,4,4,3,4,4],430,'San José corridor, near one of Cabo’s few swimmable beaches. Family Concierge + kids club + babysitting + indoor play. 6 pools, YHI spa. Upper-mid.'),
- R('Hyatt Ziva Puerto Vallarta','pv','Puerto Vallarta','Puerto Vallarta',[3,4,4,4,3,4,4,3],450,'Private Las Estacas cove (swimmable, small beach). Adults-only pool + swim-up bar; KidZ Club; paid under-4 sitting; 10 venues. 10 min to PV nightlife.'),
- R('Hyatt Ziva Cancún','cancun','Cancún Hotel Zone','Cancún',[3,4,4,4,4,4,4,3],480,'Turquoize adults-only tower + rooftop adult pool + swim-up bar. Paid sitting on request. Calm beach.'),
- R('Garza Blanca Los Cabos','cabo','Cabo San Lucas','Cabo San Lucas',[4,3,4,4,4,2,5,4],480,'In-room sitting 0 mo+ ($35–45/hr). Quieter, spa-led. Cabo Pacific side, limited swimming.'),
- R('Pueblo Bonito Rosé','cabo','Cabo San Lucas','Cabo San Lucas',[3,4,3,3,3,5,3,5],430,'On Médano Beach (swimmable!) + walk to town/bars. Paid sitting. Less on-site polish.'),
- R('Hyatt Ziva Los Cabos','cabo','San José del Cabo','San José del Cabo',[3,4,4,4,4,2,4,3],560,'Un-swimmable surf. Adults-only pool + Baja swim-up bar. Toddler splash pool. 30 min from town.'),
- R('Riu Palace Cabo San Lucas','cabo','Cabo San Lucas','Cabo San Lucas',[1,5,3,3,4,5,3,3],380,'On Médano Beach (swimmable) + walk to Cabo nightlife. RiuLand 4–12; weak under-4 care. Party/lively, slides, 24-hr AI. Budget-mid — great adult-fun value, not ideal for 1–3 yos.'),
- R('Panama Jack Playa del Carmen','pdc','Playa del Carmen / Playacar','Playa del Carmen',[3,4,3,3,3,4,3,3],350,'Beachfront, steps from 5th Ave nightlife. Kids club + paid babysitting. Mid-tier; strong location & value, fewer frills.'),
+ R('Club Med Cancún','cancun','Cancún Hotel Zone','Cancún',[98,74,64,94,60,92,76,62],450,'Baby Club 4–23 mo + Petit/Mini clubs + beeper babysitting. Calm swimmable Caribbean. Adults-only nightclub.'),
+ R('Hotel Xcaret México · Casa Espiral','pdc','Riviera Maya','Riviera Maya',[76,92,94,90,96,64,76,76],850,'All-Fun Inclusive = unlimited Grupo Xcaret parks + transport. Kids Club 4–12 (drop-off to 10pm); Lunateca 0–4 parent-accompanied; in-room sitting ~$15/hr. HA fine dining. Price bundles park access (~$140+/pp/day value).'),
+ R('Grand Velas Riviera Maya','pdc','Riviera Maya','Riviera Maya',[70,72,96,84,74,82,92,96],1300,'AAA 5-Diamond. In-room babysitting + Baby Concierge; superb family suites. Cocina de Autor fine dining. Calm Caribbean beach. 10 min to 5th Ave. Per-person pricing.'),
+ R('Grand Velas Riviera Nayarit','pv','Nuevo Vallarta','Nuevo Vallarta',[70,68,90,84,72,80,92,95],1300,'AAA 5-Diamond, Nuevo Vallarta. Kids club + baby amenities; swim-up suites; top dining; huge spa. Gentle, swimmable Banderas Bay beach. Per-person pricing.'),
+ R('Grand Velas Los Cabos','cabo','Tourist Corridor','Los Cabos',[70,68,95,84,72,40,92,95],1300,'AAA 5-Diamond. In-suite baby gear + nanny. Michelin restaurant (Cocina de Autor). Beach has strong currents.'),
+ R('Paradisus Playa del Carmen','pdc','Playa del Carmen / Playacar','Playa del Carmen',[82,80,84,80,80,82,76,80],420,'Family Concierge; baby care from 12 mo (9am–10pm). On the beach + walk to 5th Ave nightlife. Solid all-rounder.'),
+ R('Hard Rock Vallarta','pv','Nuevo Vallarta','Nuevo Vallarta',[64,86,76,74,78,74,74,72],450,'Hard Rock nightlife & energy; water slides; Ultimate Playtime sitting from 6 mo. Swimmable Banderas Bay beach. 1 & 2-BR suites.'),
+ R('Hard Rock Cancún','cancun','Cancún Hotel Zone','Cancún',[64,90,80,76,90,78,72,74],520,'Sitting from 6 mo (~$300/stay). Best party energy. FlowRider + waterpark. ⚠ Closed for renovation Aug 3–Dec 16, 2026 — avoid that window.'),
+ R('Iberostar Selection Playa Mita','pv','Punta Mita','Punta Mita',[52,58,68,72,86,76,74,74],400,'Punta Mita (~40 min from PVR, isolated). Aqua Fun water park + Star Camp 4–12; under-3s need a parent. Free cribs; babysitting (surcharge). Rooftop bar, nightclub, golf, hydrotherapy spa. Calmer bay beach.'),
+ R('Hard Rock Los Cabos','cabo','Cabo San Lucas','Cabo San Lucas',[60,86,76,70,86,16,72,78],470,'Cabo San Lucas (Pacific — NOT swimmable; lifeguards enforce). Roxity Kids Club 4–12 + nanny (48-hr notice). 6 pools, 5 swim-up bars, slides, foam parties, adults-only Echo pool, bowling. Big nightlife.'),
+ R('Grand Palladium Vallarta','pv','Punta Mita','Punta Mita',[58,70,74,76,76,74,90,72],400,'Punta Mita. Mini Club 4–12 + Raggs kids program; babysitting (surcharge). Family Selection (hotel-within-hotel 2-BR suites — great for groups). Daily live music/DJs/theater. Water park, private calmer beach.'),
+ R('Garza Blanca / Villa del Palmar Cancún','cancun','Cancún Hotel Zone','Cancún',[74,58,82,72,72,80,90,82],420,'In-room sitting 0 mo+ ($35–45/hr). Kids club open to 10pm = easy adult dinners. Quieter, spa-led.'),
+ R('Dreams Los Cabos','cabo','Tourist Corridor','Los Cabos',[74,60,70,76,62,64,64,64],420,'Corridor, Sea of Cortez (one of the calmer swimmable stretches). Explorer’s Club ages 3–12 (drop-off from 3!) + babysitting. Preferred Club adult lounge/pool. Solid all-rounder.'),
+ R('Meliá Puerto Vallarta','pv','Puerto Vallarta','Puerto Vallarta',[95,60,64,72,60,64,58,58],300,'Standout under-4: Baby Rock Club 4 mo–4 yr (drop-off) + in-room sitters. Family-heavy, lower nightlife. Beachfront, Marina area. Best raw value on the list. Verify Baby Rock hours.'),
+ R('Hyatt Ziva Puerto Vallarta','pv','Puerto Vallarta','Puerto Vallarta',[56,72,68,68,66,76,74,64],450,'Private Las Estacas cove (swimmable, small beach). Adults-only pool + swim-up bar; KidZ Club; paid under-4 sitting; 10 venues. 10 min to PV nightlife.'),
+ R('Hyatt Ziva Cancún','cancun','Cancún Hotel Zone','Cancún',[58,76,76,70,74,84,74,74],480,'Turquoize adults-only tower + rooftop adult pool + swim-up bar. Paid sitting on request. Calm beach.'),
+ R('Garza Blanca Los Cabos','cabo','Cabo San Lucas','Cabo San Lucas',[72,60,82,68,76,42,90,82],480,'In-room sitting 0 mo+ ($35–45/hr). Quieter, spa-led. Cabo Pacific side, limited swimming.'),
+ R('Pueblo Bonito Rosé','cabo','Cabo San Lucas','Cabo San Lucas',[50,76,66,52,60,88,60,90],430,'On Médano Beach (swimmable!) + walk to town/bars. Paid sitting. Less on-site polish.'),
+ R('Hyatt Ziva Los Cabos','cabo','San José del Cabo','San José del Cabo',[56,70,74,72,78,40,76,66],560,'Un-swimmable surf. Adults-only pool + Baja swim-up bar. Toddler splash pool. 30 min from town.'),
+ R('Riu Palace Cabo San Lucas','cabo','Cabo San Lucas','Cabo San Lucas',[28,88,58,60,74,86,56,60],380,'On Médano Beach (swimmable) + walk to Cabo nightlife. RiuLand 4–12; weak under-4 care. Party/lively, slides, 24-hr AI. Budget-mid — great adult-fun value, not ideal for 1–3 yos.'),
 ];
 
 // Official hotel websites (verified June 2026; brands occasionally restructure URLs).
@@ -530,14 +545,12 @@ const SITES={
  'Garza Blanca / Villa del Palmar Cancún':'https://cancun.garzablancaresort.com/',
  'Dreams Los Cabos':'https://www.dreamsresorts.com/',
  'Meliá Puerto Vallarta':'https://www.melia.com/en/hotels/mexico/puerto-vallarta/melia-puerto-vallarta',
- 'Paradisus Los Cabos':'https://www.paradisusloscabosresort.com/',
  'Hyatt Ziva Puerto Vallarta':'https://www.resortsbyhyatt.com/ziva/ziva-puerto-vallarta',
  'Hyatt Ziva Cancún':'https://www.resortsbyhyatt.com/ziva/ziva-cancun',
  'Garza Blanca Los Cabos':'https://loscabos.garzablancaresort.com/',
  'Pueblo Bonito Rosé':'https://www.pueblobonito.com/resorts/rose',
  'Hyatt Ziva Los Cabos':'https://www.resortsbyhyatt.com/ziva/ziva-los-cabos',
  'Riu Palace Cabo San Lucas':'https://www.riu.com/en/hotel/mexico/los-cabos/hotel-riu-palace-cabo-san-lucas',
- 'Panama Jack Playa del Carmen':'https://www.panamajackresorts.com/',
 };
 
 /* ───────── PHOTOS ─────────
@@ -564,14 +577,12 @@ const PLACE_IDS = {
  'Garza Blanca / Villa del Palmar Cancún':'ChIJe5AlTBUuTI8RpxChi1BxjM8',
  'Dreams Los Cabos':'ChIJbVJXD4VQr4YREBQwuuCy9BE',
  'Meliá Puerto Vallarta':'ChIJjdWIP7pFIYQRc_tNv5dxDLg',
- 'Paradisus Los Cabos':'ChIJ32IT7V5ar4YRN_I_ktPEvys',
  'Hyatt Ziva Puerto Vallarta':'ChIJpywybsdaIYQR9iWUmZrnpjA',
  'Hyatt Ziva Cancún':'ChIJi3kDdaAoTI8RqiF67h8HVFc',
  'Garza Blanca Los Cabos':'ChIJG7c0MthPr4YRRxWMBYt7HME',
  'Pueblo Bonito Rosé':'ChIJj4RbcsL-0YUR881KPNZ91VI',
  'Hyatt Ziva Los Cabos':'ChIJbVJXD4VQr4YRW2Yf5xgOGzM',
  'Riu Palace Cabo San Lucas':'ChIJa_kUhQhLr4YRkSJwhGQishw',
- 'Panama Jack Playa del Carmen':'ChIJWyvHay5DTo8RjQrKQbab5xE',
 };
 
 /* ============ SVG ART ============ */
@@ -586,13 +597,16 @@ const BLOB=`<svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="26" fill="#FFA63
 ICONS.home=`<svg viewBox="0 0 64 64"><circle cx="32" cy="25" r="10" fill="#FFCF5C"/><path d="M8 45c6-5 12-5 18 0 6-5 12-5 18 0 4-3 8-3 12 0v9H8z" fill="#2FBCCB"/><g stroke="#FF8A4B" stroke-width="3" stroke-linecap="round"><path d="M32 7v6M14 25h6M44 25h6M19 12l4 4M45 12l-4 4"/></g></svg>`;
 
 /* ============ LOGIC ============ */
-let state={view:'home', sub:'all', compare:[], sortBy:'match', maxPrice:null, levels:{...DEFAULT_LEVELS}, weights:{}};
+let state={view:'home', sub:'all', compare:[], sortBy:'match', maxPrice:null, trip:{ci:'',co:'',adults:2,rooms:1,provider:'booking'}, levels:{...DEFAULT_LEVELS}, weights:{}};
 
 function syncWeights(){CRITERIA.forEach(c=>state.weights[c.k]=LEVELS[state.levels[c.k]].w);}
 function weighted(h){let tw=0,s=0;CRITERIA.forEach(c=>{const w=state.weights[c.k];tw+=w;s+=w*h.s[c.k];});
   if(tw===0){let e=0;CRITERIA.forEach(c=>e+=h.s[c.k]);return e/CRITERIA.length;}
   return s/tw;}
 function value(h){return weighted(h)/h.price*100;}
+// Each variable is scored 0–100 directly (see methodology), so the overall match
+// is simply the weighted average of those real scores — no artificial stretch needed.
+function spread(h){return weighted(h);}
 function globalRanks(){
   const arr=HOTELS.map(h=>({h,w:weighted(h)})).sort((a,b)=>b.w-a.w);
   const m=new Map();let rank=0,prev=null,i=0;
@@ -622,7 +636,54 @@ function toggleCompare(name){
   render();
 }
 function attachPins(){document.querySelectorAll('[data-pin]').forEach(b=>b.onclick=()=>toggleCompare(b.dataset.pin));}
-function afterRender(){attachPins();renderCompareBar();initCarousels();}
+function afterRender(){attachPins();renderCompareBar();initCarousels();wireTripBar();}
+
+/* ───────── Dates → booking hand-off ───────── */
+function todayISO(){return new Date().toISOString().slice(0,10);}
+function bookURL(h){
+  const t=state.trip, q=encodeURIComponent(`${h.name} ${h.area} Mexico`);
+  if(t.provider==='expedia'){
+    let u=`https://www.expedia.com/Hotel-Search?destination=${q}&adults=${t.adults}&rooms=${t.rooms}`;
+    if(t.ci&&t.co)u+=`&startDate=${t.ci}&endDate=${t.co}`;
+    return u;
+  }
+  if(t.provider==='google') return `https://www.google.com/travel/search?q=${q}`;
+  // Booking.com (default) — reliably pre-fills dates + occupancy
+  let u=`https://www.booking.com/searchresults.html?ss=${q}&group_adults=${t.adults}&no_rooms=${t.rooms}&group_children=0`;
+  if(t.ci&&t.co)u+=`&checkin=${t.ci}&checkout=${t.co}`;
+  return u;
+}
+function bookBtn(h){return `<a class="bookbtn" data-book="${h.name}" href="${bookURL(h)}" target="_blank" rel="noopener">Check rates →</a>`;}
+function tripBar(){
+  const t=state.trip;
+  const opts=(arr,sel)=>arr.map(n=>`<option ${n===sel?'selected':''}>${n}</option>`).join('');
+  return `<div class="tripbar" id="tripbar">
+    <div class="tb-lead">📅 Your dates</div>
+    <div class="tb-field"><label>Check-in</label><input type="date" id="tb-ci" value="${t.ci}" min="${todayISO()}"></div>
+    <div class="tb-field"><label>Check-out</label><input type="date" id="tb-co" value="${t.co}" min="${t.ci||todayISO()}"></div>
+    <div class="tb-field sm"><label>Adults</label><select id="tb-ad">${opts([1,2,3,4,5,6],t.adults)}</select></div>
+    <div class="tb-field sm"><label>Rooms</label><select id="tb-rm">${opts([1,2,3,4],t.rooms)}</select></div>
+    <div class="tb-field"><label>Book via</label><select id="tb-pv">
+      <option value="booking" ${t.provider==='booking'?'selected':''}>Booking.com</option>
+      <option value="expedia" ${t.provider==='expedia'?'selected':''}>Expedia</option>
+      <option value="google" ${t.provider==='google'?'selected':''}>Google Hotels</option>
+    </select></div>
+    <span class="tb-note">Feeds every “Check rates” link${t.provider==='google'?' · Google shows the hotel; pick dates there':''}</span>
+  </div>`;
+}
+function refreshBookLinks(){
+  document.querySelectorAll('[data-book]').forEach(a=>{const h=HOTELS.find(x=>x.name===a.dataset.book); if(h)a.href=bookURL(h);});
+}
+function wireTripBar(){
+  const bar=document.getElementById('tripbar'); if(!bar) return;
+  const t=state.trip, $=id=>document.getElementById(id);
+  const ci=$('tb-ci'), co=$('tb-co');
+  ci.onchange=()=>{t.ci=ci.value; if(t.co&&t.co<=t.ci)t.co=''; co.min=t.ci||todayISO(); co.value=t.co; refreshBookLinks();};
+  co.onchange=()=>{t.co=co.value; refreshBookLinks();};
+  $('tb-ad').onchange=e=>{t.adults=+e.target.value; refreshBookLinks();};
+  $('tb-rm').onchange=e=>{t.rooms=+e.target.value; refreshBookLinks();};
+  $('tb-pv').onchange=e=>{t.provider=e.target.value; bar.querySelector('.tb-note').innerHTML='Feeds every “Check rates” link'+(t.provider==='google'?' · Google shows the hotel; pick dates there':''); refreshBookLinks();};
+}
 
 /* ───────── Photo carousels ───────── */
 const CAM_SVG='<svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.85)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5A1.5 1.5 0 0 1 4.5 7H7l1.2-1.8a1 1 0 0 1 .83-.45h5.94a1 1 0 0 1 .83.45L17 7h2.5A1.5 1.5 0 0 1 21 8.5v9A1.5 1.5 0 0 1 19.5 19h-15A1.5 1.5 0 0 1 3 17.5z"/><circle cx="12" cy="13" r="3.2"/></svg>';
@@ -704,28 +765,29 @@ function openCompare(){
   if(state.compare.length<2)return;
   const items=state.compare.map(n=>HOTELS.find(h=>h.name===n)).filter(Boolean);
   const rows=[
-    {label:'Overall match',f:h=>weighted(h),fmt:v=>v.toFixed(2)+' / 5',best:'max'},
+    {label:'Overall match',f:h=>weighted(h),fmt:v=>v.toFixed(0)+' / 100',best:'max'},
     {label:'Price / night',f:h=>h.price,fmt:v=>'$'+v,best:'min'},
-    {label:'Value / $100',f:h=>value(h),fmt:v=>v.toFixed(2),best:'max'},
-  ].concat(CRITERIA.map(c=>({label:c.label,f:h=>h.s[c.k],fmt:v=>v.toFixed(0)+' / 5',best:'max',bar:true})));
+    {label:'Value / $100',f:h=>value(h),fmt:v=>v.toFixed(1),best:'max'},
+  ].concat(CRITERIA.map(c=>({label:c.label,f:h=>h.s[c.k],fmt:v=>v.toFixed(0)+' / 100',best:'max',bar:true})));
   const head=`<tr><th></th>${items.map(h=>`<th>${h.name}<br><span style="font-weight:400;font-size:.78rem;color:var(--ink-soft)">${h.area}</span></th>`).join('')}</tr>`;
   const bodyRow=r=>{
     const vals=items.map(r.f);
     const best=r.best==='max'?Math.max(...vals):r.best==='min'?Math.min(...vals):null;
     const cells=items.map((h,i)=>{
       const v=vals[i],isBest=best!==null&&Math.abs(v-best)<1e-9;
-      const bar=r.bar?`<div class="cm-bar"><i style="width:${v/5*100}%"></i></div>`:'';
+      const bar=r.bar?`<div class="cm-bar"><i style="width:${v}%"></i></div>`:'';
       return `<td class="${isBest?'best':''}">${r.fmt(v)}${bar}</td>`;
     }).join('');
     return `<tr><th>${r.label}</th>${cells}</tr>`;
   };
   const noteRow=`<tr><th>The lowdown</th>${items.map(h=>`<td style="text-align:left;font-size:.79rem;color:var(--ink-soft);font-weight:400;min-width:200px">${h.note}</td>`).join('')}</tr>`;
   const siteRow=`<tr><th>Official site</th>${items.map(h=>`<td>${SITES[h.name]?`<a class="sitelink" href="${SITES[h.name]}" target="_blank" rel="noopener">Visit ↗</a>`:'—'}</td>`).join('')}</tr>`;
+  const bookRow=`<tr><th>Check rates</th>${items.map(h=>`<td>${bookBtn(h)}</td>`).join('')}</tr>`;
   const minw=170+items.length*180;
   document.getElementById('comparemodal').innerHTML=`<div class="cm-panel">
     <div class="cm-head"><h2>Side by side</h2><button class="cm-close" onclick="closeCompare()">✕</button></div>
     <div class="cm-scroll"><table class="cm-table" style="min-width:${minw}px">
-      <thead>${head}</thead><tbody>${rows.map(bodyRow).join('')}${noteRow}${siteRow}</tbody></table></div>
+      <thead>${head}</thead><tbody>${rows.map(bodyRow).join('')}${noteRow}${siteRow}${bookRow}</tbody></table></div>
    </div>`;
   document.getElementById('comparemodal').classList.add('show');
 }
@@ -734,15 +796,15 @@ function closeCompare(){document.getElementById('comparemodal').classList.remove
 /* card */
 function cardHTML(h,rankMap){
   const reg=REGIONS.find(r=>r.id===h.macro);
-  const w=weighted(h), match=Math.round(w*20), val=value(h).toFixed(2), rank=rankMap.get(h.name);
-  const crit=CRITERIA.map(c=>`<div class="row"><span class="lab">${c.label}</span><span class="bar"><i style="width:${h.s[c.k]/5*100}%"></i></span></div>`).join('');
+  const w=weighted(h), sp=Math.round(w), match=Math.round(w), val=value(h).toFixed(1), rank=rankMap.get(h.name);
+  const crit=CRITERIA.map(c=>`<div class="row"><span class="lab">${c.label}</span><span class="bar"><i style="width:${h.s[c.k]}%"></i></span><span class="cscore">${h.s[c.k]}</span></div>`).join('');
   return `<article class="card">
     <div class="card-top ${reg.acls}">
       <span class="rankbadge">#${rank} overall</span>
       <div class="leaf">${LEAF}</div>
       <div class="area">${h.area}</div>
       <h3>${h.name}</h3>
-      <div class="scoreline"><span class="big">${w.toFixed(2)}</span><span class="of">/ 5 match</span></div>
+      <div class="scoreline"><span class="big">${sp}</span><span class="of">/ 100 match</span></div>
       <div class="matchbar"><i style="width:${match}%"></i></div>
     </div>
     <div class="card-body">
@@ -754,7 +816,10 @@ function cardHTML(h,rankMap){
       </div>
       <div class="crit">${crit}</div>
       <p class="note">${h.note}</p>
-      ${SITES[h.name]?`<a class="sitelink" href="${SITES[h.name]}" target="_blank" rel="noopener">Visit official site ↗</a>`:''}
+      <div class="card-links">
+        ${SITES[h.name]?`<a class="sitelink" href="${SITES[h.name]}" target="_blank" rel="noopener">Visit official site ↗</a>`:''}
+        ${bookBtn(h)}
+      </div>
       <div class="carousel" data-resort="${h.name}" data-pid="${PLACE_IDS[h.name]||''}" data-color="${reg.color}">
         <div class="caro-track"></div>
         <button class="caro-nav prev" aria-label="Previous photo">‹</button>
@@ -783,6 +848,7 @@ function renderRegion(){
      </div>
      <div class="icon-big">${ICONS[r.id]}</div>
    </div>
+   ${tripBar()}
    <div class="climate">
      <h3>☀︎ When to go</h3>
      <div class="climate-grid">${climate}</div>
@@ -820,9 +886,9 @@ function renderBuilder(){
   const items=list.map((h,i)=>{
     const reg=REGIONS.find(r=>r.id===h.macro);
     let big,unit,sub;
-    if(state.sortBy==='value'){big=value(h).toFixed(2);unit='value';sub=`match ${weighted(h).toFixed(2)} · ~$${h.price}`;}
-    else if(state.sortBy==='smart'){big=Math.round(smart(h)*100);unit='smart';sub=`${weighted(h).toFixed(2)} match · ${value(h).toFixed(2)} value · ~$${h.price}`;}
-    else {big=weighted(h).toFixed(2);unit='match';sub=`~$${h.price} · value ${value(h).toFixed(2)}`;}
+    if(state.sortBy==='value'){big=value(h).toFixed(1);unit='value';sub=`match ${Math.round(weighted(h))} · ~$${h.price}`;}
+    else if(state.sortBy==='smart'){big=Math.round(smart(h)*100);unit='smart';sub=`${Math.round(weighted(h))} match · ${value(h).toFixed(1)} value · ~$${h.price}`;}
+    else {big=Math.round(weighted(h));unit='match';sub=`~$${h.price} · value ${value(h).toFixed(1)}`;}
     return `<div class="rl-item">
       <div class="num">${i+1}</div>
       <div><div class="nm">${h.name}</div><div class="sub"><span class="dot" style="background:${reg.color}"></span>${h.area} · ${h.sub}</div></div>
@@ -835,7 +901,7 @@ function renderBuilder(){
      <span class="eyebrow">Make it yours</span>
      <h2>Build Your Ideal Hotel</h2>
      <p class="blurb builder-intro">No sliders, no math. Just tell us how much each thing matters to your crew — and all 22 resorts re-rank on the spot. Tap a vibe to start fast, then fine-tune any factor.</p>
-     <details class="method"><summary>How the scores work</summary><div>Every resort is rated 0–5 on each factor against fixed anchors, so a number means the same thing across all 22. <b>5</b> = best-in-class · <b>3</b> = solid/standard · <b>1–2</b> = a genuine weak spot. For example — <b>Under-4 care:</b> 5 = a true drop-off baby club (only Club Med &amp; Meliá clear this), 3 = paid in-room sitter only, 1 = essentially none. <b>Swimmable beach:</b> 5 = calm wade-in water, 2 = lounging only (open-Pacific surf), 1 = swimming not allowed. The fact-based factors (childcare age, swimmable water, price) are firmer than judgment calls like dining or spa — and any two resorts within ~0.15 of each other are effectively tied. <b>Best value</b> ranks by match score per $100/night, so it rewards resorts that punch above their price. <b>Smart pick</b> blends the two 50/50 — the best balance of quality and price for what you're considering.</div></details>
+     <details class="method"><summary>How the scores work</summary><div>Every resort is scored <b>0–100 on each of the eight factors</b>, judged against fixed anchors so a number means the same thing across all 22: <b>90+</b> best-in-class · <b>~75</b> clearly above the field · <b>~62</b> solid/standard · <b>~45</b> a real limitation · <b>under 35</b> a genuine weak spot. Examples — <b>Under-4 care:</b> 98 = a true drop-off baby club (Club Med, Meliá), ~74 = drop-off from age 3 or in-room sitting from birth, 28 = essentially none (Riu). <b>Swimmable beach:</b> 88+ = calm wade-in water (Médano, protected Caribbean), ~40 = lounging-only surf, 16 = swimming prohibited (Hard Rock Los Cabos). The <b>match</b> score up top is simply the weighted average of those eight, on the same 0–100 scale. The fact-based factors (childcare age, swimmable water, price) are firm; the judgment calls (dining, spa, adult fun) are informed estimates, so treat resorts within a few points of each other as tied. <b>Best value</b> = match per $100/night; <b>Smart pick</b> blends match and value 50/50.</div></details>
    </div></div>
    <div class="builder-grid">
      <div class="sliders">
