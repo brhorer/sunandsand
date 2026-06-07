@@ -192,6 +192,13 @@ main{padding:46px 0 80px;min-height:60vh}
 
 /* ---------- BUILDER ---------- */
 .builder-intro{max-width:720px;margin-bottom:26px}
+.method{max-width:720px;font-size:.88rem;margin-bottom:24px;margin-top:-10px}
+.method summary{cursor:pointer;font-weight:600;color:var(--coral-deep);list-style:none;user-select:none}
+.method summary::-webkit-details-marker{display:none}
+.method summary::before{content:'▸  '}
+.method[open] summary::before{content:'▾  '}
+.method div{margin-top:10px;color:var(--ink-soft);line-height:1.65}
+.method b{color:var(--ink)}
 .builder-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:start}
 .sliders{background:var(--cream);border-radius:22px;padding:22px;border:1px solid var(--sand-deep);
   box-shadow:var(--shadow-sm);position:relative}
@@ -454,28 +461,28 @@ const R=(name,macro,sub,area,s,price,note)=>({name,macro,sub,area,
   s:{u4:s[0],adult:s[1],dining:s[2],kids:s[3],pools:s[4],beach:s[5],suites:s[6],spa:s[7]},price,note});
 
 const HOTELS=[
- R('Club Med Cancún','cancun','Cancún Hotel Zone','Cancún',[5,4,4,5,4,5,4,4],450,'Baby Club 4–23 mo + Petit/Mini clubs + beeper babysitting. Calm swimmable Caribbean. Adults-only nightclub.'),
- R('Hotel Xcaret México · Casa Espiral','pdc','Riviera Maya','Riviera Maya',[4,5,5,4,5,4,4,4],850,'All-Fun Inclusive = unlimited Grupo Xcaret parks + transport. Kids Club 4–12 (drop-off to 10pm); Lunateca 0–4 parent-accompanied; in-room sitting ~$15/hr. HA fine dining. Price bundles park access (~$140+/pp/day value).'),
+ R('Club Med Cancún','cancun','Cancún Hotel Zone','Cancún',[5,4,3,5,3,5,4,3],450,'Baby Club 4–23 mo + Petit/Mini clubs + beeper babysitting. Calm swimmable Caribbean. Adults-only nightclub.'),
+ R('Hotel Xcaret México · Casa Espiral','pdc','Riviera Maya','Riviera Maya',[4,5,5,5,5,3,4,4],850,'All-Fun Inclusive = unlimited Grupo Xcaret parks + transport. Kids Club 4–12 (drop-off to 10pm); Lunateca 0–4 parent-accompanied; in-room sitting ~$15/hr. HA fine dining. Price bundles park access (~$140+/pp/day value).'),
  R('Grand Velas Riviera Maya','pdc','Riviera Maya','Riviera Maya',[4,4,5,4,4,4,5,5],1300,'AAA 5-Diamond. In-room babysitting + Baby Concierge; superb family suites. Cocina de Autor fine dining. Calm Caribbean beach. 10 min to 5th Ave. Per-person pricing.'),
  R('Grand Velas Riviera Nayarit','pv','Nuevo Vallarta','Nuevo Vallarta',[4,4,5,4,4,4,5,5],1300,'AAA 5-Diamond, Nuevo Vallarta. Kids club + baby amenities; swim-up suites; top dining; huge spa. Gentle, swimmable Banderas Bay beach. Per-person pricing.'),
- R('Grand Velas Los Cabos','cabo','Tourist Corridor','Los Cabos',[4,4,5,4,4,3,4,5],1300,'AAA 5-Diamond. In-suite baby gear + nanny. Michelin restaurant (Cocina de Autor). Beach has strong currents.'),
+ R('Grand Velas Los Cabos','cabo','Tourist Corridor','Los Cabos',[4,4,5,4,4,2,5,5],1300,'AAA 5-Diamond. In-suite baby gear + nanny. Michelin restaurant (Cocina de Autor). Beach has strong currents.'),
  R('Paradisus Playa del Carmen','pdc','Playa del Carmen / Playacar','Playa del Carmen',[4,4,4,4,4,4,4,4],420,'Family Concierge; baby care from 12 mo (9am–10pm). On the beach + walk to 5th Ave nightlife. Solid all-rounder.'),
  R('Hard Rock Vallarta','pv','Nuevo Vallarta','Nuevo Vallarta',[3,5,4,4,4,4,4,4],450,'Hard Rock nightlife & energy; water slides; Ultimate Playtime sitting from 6 mo. Swimmable Banderas Bay beach. 1 & 2-BR suites.'),
- R('Hard Rock Cancún','cancun','Cancún Hotel Zone','Cancún',[3,5,4,4,4,4,4,4],520,'Sitting from 6 mo (~$300/stay). Best party energy. FlowRider + waterpark. ⚠ Closed for renovation Aug 3–Dec 16, 2026 — avoid that window.'),
- R('Iberostar Selection Playa Mita','pv','Punta Mita','Punta Mita',[3,4,4,4,5,4,4,4],400,'Punta Mita (~40 min from PVR, isolated). Aqua Fun water park + Star Camp 4–12; under-3s need a parent. Free cribs; babysitting (surcharge). Rooftop bar, nightclub, golf, hydrotherapy spa. Calmer bay beach.'),
- R('Hard Rock Los Cabos','cabo','Cabo San Lucas','Cabo San Lucas',[3,5,4,4,5,2,4,4],470,'Cabo San Lucas (Pacific — NOT swimmable; lifeguards enforce). Roxity Kids Club 4–12 + nanny (48-hr notice). 6 pools, 5 swim-up bars, slides, foam parties, adults-only Echo pool, bowling. Big nightlife.'),
+ R('Hard Rock Cancún','cancun','Cancún Hotel Zone','Cancún',[3,5,4,4,5,4,4,4],520,'Sitting from 6 mo (~$300/stay). Best party energy. FlowRider + waterpark. ⚠ Closed for renovation Aug 3–Dec 16, 2026 — avoid that window.'),
+ R('Iberostar Selection Playa Mita','pv','Punta Mita','Punta Mita',[3,3,4,4,5,4,4,4],400,'Punta Mita (~40 min from PVR, isolated). Aqua Fun water park + Star Camp 4–12; under-3s need a parent. Free cribs; babysitting (surcharge). Rooftop bar, nightclub, golf, hydrotherapy spa. Calmer bay beach.'),
+ R('Hard Rock Los Cabos','cabo','Cabo San Lucas','Cabo San Lucas',[3,5,4,4,5,1,4,4],470,'Cabo San Lucas (Pacific — NOT swimmable; lifeguards enforce). Roxity Kids Club 4–12 + nanny (48-hr notice). 6 pools, 5 swim-up bars, slides, foam parties, adults-only Echo pool, bowling. Big nightlife.'),
  R('Grand Palladium Vallarta','pv','Punta Mita','Punta Mita',[3,4,4,4,4,4,5,4],400,'Punta Mita. Mini Club 4–12 + Raggs kids program; babysitting (surcharge). Family Selection (hotel-within-hotel 2-BR suites — great for groups). Daily live music/DJs/theater. Water park, private calmer beach.'),
- R('Garza Blanca / Villa del Palmar Cancún','cancun','Cancún Hotel Zone','Cancún',[4,3,4,4,4,4,4,4],420,'In-room sitting 0 mo+ ($35–45/hr). Kids club open to 10pm = easy adult dinners. Quieter, spa-led.'),
- R('Dreams Los Cabos','cabo','Tourist Corridor','Los Cabos',[4,3,4,4,4,4,4,4],420,'Corridor, Sea of Cortez (one of the calmer swimmable stretches). Explorer’s Club ages 3–12 (drop-off from 3!) + babysitting. Preferred Club adult lounge/pool. Solid all-rounder.'),
- R('Meliá Puerto Vallarta','pv','Puerto Vallarta','Puerto Vallarta',[5,3,3,4,4,4,3,3],300,'Standout under-4: Baby Rock Club 4 mo–4 yr (drop-off) + in-room sitters. Family-heavy, lower nightlife. Beachfront, Marina area. Best raw value on the list. Verify Baby Rock hours.'),
- R('Paradisus Los Cabos','cabo','San José del Cabo','San José del Cabo',[3,4,4,4,4,4,4,4],430,'San José corridor, near one of Cabo’s few swimmable beaches. Family Concierge + kids club + babysitting + indoor play. 6 pools, YHI spa. Upper-mid.'),
- R('Hyatt Ziva Puerto Vallarta','pv','Puerto Vallarta','Puerto Vallarta',[3,4,4,4,4,4,4,4],450,'Private Las Estacas cove (swimmable, small beach). Adults-only pool + swim-up bar; KidZ Club; paid under-4 sitting; 10 venues. 10 min to PV nightlife.'),
- R('Hyatt Ziva Cancún','cancun','Cancún Hotel Zone','Cancún',[3,4,4,4,4,4,4,4],480,'Turquoize adults-only tower + rooftop adult pool + swim-up bar. Paid sitting on request. Calm beach.'),
- R('Garza Blanca Los Cabos','cabo','Cabo San Lucas','Cabo San Lucas',[4,3,4,4,4,3,4,4],480,'In-room sitting 0 mo+ ($35–45/hr). Quieter, spa-led. Cabo Pacific side, limited swimming.'),
- R('Pueblo Bonito Rosé','cabo','Cabo San Lucas','Cabo San Lucas',[3,4,4,3,4,5,3,4],430,'On Médano Beach (swimmable!) + walk to town/bars. Paid sitting. Less on-site polish.'),
- R('Hyatt Ziva Los Cabos','cabo','San José del Cabo','San José del Cabo',[3,4,4,4,4,2,4,4],560,'Un-swimmable surf. Adults-only pool + Baja swim-up bar. Toddler splash pool. 30 min from town.'),
- R('Riu Palace Cabo San Lucas','cabo','Cabo San Lucas','Cabo San Lucas',[2,5,3,4,4,4,3,3],380,'On Médano Beach (swimmable) + walk to Cabo nightlife. RiuLand 4–12; weak under-4 care. Party/lively, slides, 24-hr AI. Budget-mid — great adult-fun value, not ideal for 1–3 yos.'),
- R('Panama Jack Playa del Carmen','pdc','Playa del Carmen / Playacar','Playa del Carmen',[3,4,3,4,3,4,3,3],350,'Beachfront, steps from 5th Ave nightlife. Kids club + paid babysitting. Mid-tier; strong location & value, fewer frills.'),
+ R('Garza Blanca / Villa del Palmar Cancún','cancun','Cancún Hotel Zone','Cancún',[4,3,4,4,4,4,5,4],420,'In-room sitting 0 mo+ ($35–45/hr). Kids club open to 10pm = easy adult dinners. Quieter, spa-led.'),
+ R('Dreams Los Cabos','cabo','Tourist Corridor','Los Cabos',[4,3,4,4,3,3,3,3],420,'Corridor, Sea of Cortez (one of the calmer swimmable stretches). Explorer’s Club ages 3–12 (drop-off from 3!) + babysitting. Preferred Club adult lounge/pool. Solid all-rounder.'),
+ R('Meliá Puerto Vallarta','pv','Puerto Vallarta','Puerto Vallarta',[5,3,3,4,3,3,3,3],300,'Standout under-4: Baby Rock Club 4 mo–4 yr (drop-off) + in-room sitters. Family-heavy, lower nightlife. Beachfront, Marina area. Best raw value on the list. Verify Baby Rock hours.'),
+ R('Paradisus Los Cabos','cabo','San José del Cabo','San José del Cabo',[3,3,4,4,4,3,4,4],430,'San José corridor, near one of Cabo’s few swimmable beaches. Family Concierge + kids club + babysitting + indoor play. 6 pools, YHI spa. Upper-mid.'),
+ R('Hyatt Ziva Puerto Vallarta','pv','Puerto Vallarta','Puerto Vallarta',[3,4,4,4,3,4,4,3],450,'Private Las Estacas cove (swimmable, small beach). Adults-only pool + swim-up bar; KidZ Club; paid under-4 sitting; 10 venues. 10 min to PV nightlife.'),
+ R('Hyatt Ziva Cancún','cancun','Cancún Hotel Zone','Cancún',[3,4,4,4,4,4,4,3],480,'Turquoize adults-only tower + rooftop adult pool + swim-up bar. Paid sitting on request. Calm beach.'),
+ R('Garza Blanca Los Cabos','cabo','Cabo San Lucas','Cabo San Lucas',[4,3,4,4,4,2,5,4],480,'In-room sitting 0 mo+ ($35–45/hr). Quieter, spa-led. Cabo Pacific side, limited swimming.'),
+ R('Pueblo Bonito Rosé','cabo','Cabo San Lucas','Cabo San Lucas',[3,4,3,3,3,5,3,5],430,'On Médano Beach (swimmable!) + walk to town/bars. Paid sitting. Less on-site polish.'),
+ R('Hyatt Ziva Los Cabos','cabo','San José del Cabo','San José del Cabo',[3,4,4,4,4,2,4,3],560,'Un-swimmable surf. Adults-only pool + Baja swim-up bar. Toddler splash pool. 30 min from town.'),
+ R('Riu Palace Cabo San Lucas','cabo','Cabo San Lucas','Cabo San Lucas',[1,5,3,3,4,5,3,3],380,'On Médano Beach (swimmable) + walk to Cabo nightlife. RiuLand 4–12; weak under-4 care. Party/lively, slides, 24-hr AI. Budget-mid — great adult-fun value, not ideal for 1–3 yos.'),
+ R('Panama Jack Playa del Carmen','pdc','Playa del Carmen / Playacar','Playa del Carmen',[3,4,3,3,3,4,3,3],350,'Beachfront, steps from 5th Ave nightlife. Kids club + paid babysitting. Mid-tier; strong location & value, fewer frills.'),
 ];
 
 // Official hotel websites (verified June 2026; brands occasionally restructure URLs).
@@ -676,6 +683,7 @@ function renderBuilder(){
      <span class="eyebrow">Make it yours</span>
      <h2>Build Your Ideal Hotel</h2>
      <p class="blurb builder-intro">No sliders, no math. Just tell us how much each thing matters to your crew — and all 22 resorts re-rank on the spot. Tap a vibe to start fast, then fine-tune any factor.</p>
+     <details class="method"><summary>How the scores work</summary><div>Every resort is rated 0–5 on each factor against fixed anchors, so a number means the same thing across all 22. <b>5</b> = best-in-class · <b>3</b> = solid/standard · <b>1–2</b> = a genuine weak spot. For example — <b>Under-4 care:</b> 5 = a true drop-off baby club (only Club Med &amp; Meliá clear this), 3 = paid in-room sitter only, 1 = essentially none. <b>Swimmable beach:</b> 5 = calm wade-in water, 2 = lounging only (open-Pacific surf), 1 = swimming not allowed. The fact-based factors (childcare age, swimmable water, price) are firmer than judgment calls like dining or spa — and any two resorts within ~0.15 of each other are effectively tied.</div></details>
    </div></div>
    <div class="builder-grid">
      <div class="sliders">
