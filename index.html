@@ -150,6 +150,24 @@ main{padding:46px 0 80px;min-height:60vh}
 .crit .bar{flex:1;height:6px;background:var(--sand-deep);border-radius:5px;overflow:hidden}
 .crit .bar i{display:block;height:100%;border-radius:5px;background:linear-gradient(90deg,var(--mango),var(--coral))}
 .note{font-size:.85rem;color:var(--ink-soft);border-top:1px dashed var(--sand-deep);padding-top:11px}
+.carousel{position:relative;margin-top:14px;border-radius:14px;overflow:hidden;background:var(--sand);
+  box-shadow:inset 0 0 0 1px rgba(0,0,0,.05)}
+.caro-track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;
+  -webkit-overflow-scrolling:touch;aspect-ratio:16/10;scrollbar-width:none}
+.caro-track::-webkit-scrollbar{display:none}
+.caro-slide{flex:0 0 100%;width:100%;height:100%;object-fit:cover;display:block;scroll-snap-align:center;background:var(--sand)}
+.caro-slide.ph{display:flex;align-items:center;justify-content:center}
+.caro-nav{position:absolute;top:50%;transform:translateY(-50%);width:34px;height:34px;border-radius:50%;border:none;
+  background:rgba(20,20,20,.42);color:#fff;font-size:1.35rem;line-height:1;cursor:pointer;z-index:3;
+  display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .2s}
+.carousel:hover .caro-nav{opacity:1}
+.caro-nav.prev{left:8px}.caro-nav.next{right:8px}
+.caro-dots{position:absolute;bottom:9px;left:0;right:0;display:flex;gap:5px;justify-content:center;z-index:3;pointer-events:none}
+.caro-dots i{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.6);transition:all .2s;box-shadow:0 0 3px rgba(0,0,0,.3)}
+.caro-dots i.on{background:#fff;width:18px;border-radius:4px}
+.caro-credit{position:absolute;bottom:8px;right:9px;z-index:3;font-size:.6rem;color:rgba(255,255,255,.92);
+  background:rgba(0,0,0,.34);padding:2px 7px;border-radius:6px;max-width:58%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+@media(hover:none){.caro-nav{opacity:.82}}
 .sitelink{display:inline-flex;align-items:center;gap:6px;align-self:flex-start;font-family:'Outfit';font-weight:600;
   font-size:.82rem;color:var(--ocean-deep);text-decoration:none;border:1.5px solid var(--turq);
   padding:8px 15px;border-radius:30px;transition:all .2s}
@@ -221,6 +239,17 @@ main{padding:46px 0 80px;min-height:60vh}
 .seg button.on[data-lv="3"]{background:var(--coral)}
 .rank-cap{font-size:.78rem;font-weight:600;letter-spacing:.04em;color:var(--ink-soft);margin-bottom:4px;
   text-transform:uppercase}
+.rank-controls{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-bottom:12px}
+.sortseg{display:inline-flex;background:var(--sand);border-radius:30px;padding:3px;gap:2px}
+.sortseg button{border:none;background:transparent;font-family:'Outfit';font-weight:600;font-size:.8rem;
+  color:var(--ink-soft);padding:8px 13px;border-radius:30px;cursor:pointer;transition:all .18s;white-space:nowrap}
+.sortseg button.on{background:var(--ocean);color:#fff}
+.budget{font-size:.84rem;font-weight:600;color:var(--ink-soft);display:flex;align-items:center;gap:8px;margin-left:auto}
+.budget select{font-family:'Outfit';font-weight:500;font-size:.86rem;padding:8px 12px;border-radius:10px;
+  border:1.5px solid var(--sand-deep);background:#fff;color:var(--ink);cursor:pointer}
+.mlab{font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--coral-deep);display:block;line-height:1;margin-top:1px}
+.empty-note{padding:24px 4px;color:var(--ink-soft);font-size:.95rem}
+@media(max-width:600px){.sortseg{width:100%}.sortseg button{flex:1;padding:9px 6px}.budget{margin-left:0;width:100%}.budget select{flex:1}}
 @media(max-width:600px){
   .imp-row{flex-direction:column;align-items:stretch;gap:9px}
   .seg{width:100%;justify-content:space-between}
@@ -511,6 +540,40 @@ const SITES={
  'Panama Jack Playa del Carmen':'https://www.panamajackresorts.com/',
 };
 
+/* ───────── PHOTOS ─────────
+   To show real resort photos, paste a Google Maps JavaScript API key below
+   (enable "Maps JavaScript API" + "Places API (New)", and restrict the key to
+   your site's domain in the Google Cloud console). Until then, cards show a
+   tasteful placeholder tile. To hand-pick photos for any resort instead, add
+   an array of image URLs to PHOTOS keyed by the exact resort name — those win
+   over Google. */
+const MAPS_KEY = "AIzaSyA_eP_vfyFYywhohXttFpeNMKeBptf0ZVY";   // Google Maps key (restrict to your domain in Cloud console)
+const PHOTOS = {};                // optional manual overrides: { 'Club Med Cancún': ['https://…','https://…'] }
+const PLACE_IDS = {
+ 'Club Med Cancún':'ChIJ4UrwUfSCTo8RoiENffsp6Ko',
+ 'Hotel Xcaret México · Casa Espiral':'ChIJTRZdG3pETo8RhH9J4CfBw9A',
+ 'Grand Velas Riviera Maya':'ChIJk22uGnhdTo8R-TfYJBNukNk',
+ 'Grand Velas Riviera Nayarit':'ChIJN1dDzrlGIYQRTbl1Bd_IbsE',
+ 'Grand Velas Los Cabos':'ChIJOa799XBOr4YRrLmKZhP-Md0',
+ 'Paradisus Playa del Carmen':'ChIJSRFJHCxdTo8RKz9VSAKfUWs',
+ 'Hard Rock Vallarta':'ChIJiYj6tchGIYQR-Ws5dsBD80Y',
+ 'Hard Rock Cancún':'ChIJp_ThK74oTI8RoFG6mKmEnMg',
+ 'Iberostar Selection Playa Mita':'ChIJ1btZFZcUIYQRt6fQuc8DiSs',
+ 'Hard Rock Los Cabos':'ChIJjf1-hRo1r4YR-CovR_Nseaw',
+ 'Grand Palladium Vallarta':'ChIJCVLCPktrIYQRITmugvWSxoI',
+ 'Garza Blanca / Villa del Palmar Cancún':'ChIJe5AlTBUuTI8RpxChi1BxjM8',
+ 'Dreams Los Cabos':'ChIJbVJXD4VQr4YREBQwuuCy9BE',
+ 'Meliá Puerto Vallarta':'ChIJjdWIP7pFIYQRc_tNv5dxDLg',
+ 'Paradisus Los Cabos':'ChIJ32IT7V5ar4YRN_I_ktPEvys',
+ 'Hyatt Ziva Puerto Vallarta':'ChIJpywybsdaIYQR9iWUmZrnpjA',
+ 'Hyatt Ziva Cancún':'ChIJi3kDdaAoTI8RqiF67h8HVFc',
+ 'Garza Blanca Los Cabos':'ChIJG7c0MthPr4YRRxWMBYt7HME',
+ 'Pueblo Bonito Rosé':'ChIJj4RbcsL-0YUR881KPNZ91VI',
+ 'Hyatt Ziva Los Cabos':'ChIJbVJXD4VQr4YRW2Yf5xgOGzM',
+ 'Riu Palace Cabo San Lucas':'ChIJa_kUhQhLr4YRkSJwhGQishw',
+ 'Panama Jack Playa del Carmen':'ChIJWyvHay5DTo8RjQrKQbab5xE',
+};
+
 /* ============ SVG ART ============ */
 const ICONS={
  cancun:`<svg viewBox="0 0 64 64"><path d="M32 8 14 52h36L32 8z" fill="#0C7A86"/><path d="M32 8 23 30h18L32 8z" fill="#2FBCCB"/><rect x="26" y="40" width="12" height="12" fill="#FFCF5C"/><path d="M10 52h44" stroke="#08545C" stroke-width="3" stroke-linecap="round"/></svg>`,
@@ -523,7 +586,7 @@ const BLOB=`<svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="26" fill="#FFA63
 ICONS.home=`<svg viewBox="0 0 64 64"><circle cx="32" cy="25" r="10" fill="#FFCF5C"/><path d="M8 45c6-5 12-5 18 0 6-5 12-5 18 0 4-3 8-3 12 0v9H8z" fill="#2FBCCB"/><g stroke="#FF8A4B" stroke-width="3" stroke-linecap="round"><path d="M32 7v6M14 25h6M44 25h6M19 12l4 4M45 12l-4 4"/></g></svg>`;
 
 /* ============ LOGIC ============ */
-let state={view:'home', sub:'all', compare:[], levels:{...DEFAULT_LEVELS}, weights:{}};
+let state={view:'home', sub:'all', compare:[], sortBy:'match', maxPrice:null, levels:{...DEFAULT_LEVELS}, weights:{}};
 
 function syncWeights(){CRITERIA.forEach(c=>state.weights[c.k]=LEVELS[state.levels[c.k]].w);}
 function weighted(h){let tw=0,s=0;CRITERIA.forEach(c=>{const w=state.weights[c.k];tw+=w;s+=w*h.s[c.k];});
@@ -559,7 +622,76 @@ function toggleCompare(name){
   render();
 }
 function attachPins(){document.querySelectorAll('[data-pin]').forEach(b=>b.onclick=()=>toggleCompare(b.dataset.pin));}
-function afterRender(){attachPins();renderCompareBar();}
+function afterRender(){attachPins();renderCompareBar();initCarousels();}
+
+/* ───────── Photo carousels ───────── */
+const CAM_SVG='<svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.85)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5A1.5 1.5 0 0 1 4.5 7H7l1.2-1.8a1 1 0 0 1 .83-.45h5.94a1 1 0 0 1 .83.45L17 7h2.5A1.5 1.5 0 0 1 21 8.5v9A1.5 1.5 0 0 1 19.5 19h-15A1.5 1.5 0 0 1 3 17.5z"/><circle cx="12" cy="13" r="3.2"/></svg>';
+let _mapsP=null;
+function loadMaps(){
+  if(!MAPS_KEY) return Promise.reject('no-key');
+  if(_mapsP) return _mapsP;
+  _mapsP=new Promise((res,rej)=>{
+    window.__sasMaps=()=>res();
+    const s=document.createElement('script');
+    s.async=true;s.onerror=()=>rej('load-fail');
+    s.src=`https://maps.googleapis.com/maps/api/js?key=${MAPS_KEY}&libraries=places&v=weekly&callback=__sasMaps`;
+    document.head.appendChild(s);
+  });
+  return _mapsP;
+}
+function buildPlaceholder(c){
+  c.querySelector('.caro-track').innerHTML=`<div class="caro-slide ph" style="background:linear-gradient(135deg,${c.dataset.color||'#FF9A5B'},#FF9A5B)">${CAM_SVG}</div>`;
+}
+function buildDots(c,n){
+  const d=c.querySelector('.caro-dots');
+  d.innerHTML=n>1?Array.from({length:n},(_,i)=>`<i class="${i?'':'on'}"></i>`).join(''):'';
+}
+async function getPhotos(c){
+  const name=c.dataset.resort;
+  if(PHOTOS[name]&&PHOTOS[name].length) return PHOTOS[name].map(u=>({url:u,credit:''}));
+  if(!MAPS_KEY||!c.dataset.pid) return [];
+  await loadMaps();
+  const {Place}=await google.maps.importLibrary('places');
+  const place=new Place({id:c.dataset.pid});
+  await place.fetchFields({fields:['photos']});
+  return (place.photos||[]).slice(0,8).map(p=>({
+    url:p.getURI({maxWidth:900}),
+    credit:(p.authorAttributions&&p.authorAttributions[0]&&p.authorAttributions[0].displayName)||''
+  }));
+}
+async function hydrateCarousel(c){
+  let photos=[];
+  try{photos=await getPhotos(c);}catch(e){return;}     // keep placeholder on any failure
+  if(!photos.length) return;
+  c._photos=photos;
+  const track=c.querySelector('.caro-track');
+  track.innerHTML=photos.map(p=>`<img class="caro-slide" loading="lazy" decoding="async" src="${p.url}" alt="${c.dataset.resort}">`).join('');
+  buildDots(c,photos.length);
+  const multi=photos.length>1;
+  c.querySelector('.caro-nav.prev').style.display=multi?'':'none';
+  c.querySelector('.caro-nav.next').style.display=multi?'':'none';
+  const cr=c.querySelector('.caro-credit');
+  cr.textContent=photos[0].credit?('📷 '+photos[0].credit):'';
+}
+function wireCarousel(c){
+  const track=c.querySelector('.caro-track');
+  c.querySelector('.caro-nav.prev').onclick=()=>track.scrollBy({left:-track.clientWidth,behavior:'smooth'});
+  c.querySelector('.caro-nav.next').onclick=()=>track.scrollBy({left:track.clientWidth,behavior:'smooth'});
+  track.addEventListener('scroll',()=>{
+    const i=Math.round(track.scrollLeft/track.clientWidth);
+    c.querySelectorAll('.caro-dots i').forEach((d,j)=>d.classList.toggle('on',j===i));
+    if(c._photos&&c._photos[i]){const cr=c.querySelector('.caro-credit');cr.textContent=c._photos[i].credit?('📷 '+c._photos[i].credit):'';}
+  },{passive:true});
+}
+function initCarousels(){
+  document.querySelectorAll('.carousel:not([data-init])').forEach(c=>{
+    c.dataset.init='1';
+    buildPlaceholder(c);
+    wireCarousel(c);
+    const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){io.disconnect();hydrateCarousel(c);}}),{rootMargin:'400px'});
+    io.observe(c);
+  });
+}
 function renderCompareBar(){
   const bar=document.getElementById('comparebar');
   if(!state.compare.length){bar.classList.remove('show');document.body.classList.remove('bar-open');bar.innerHTML='';return;}
@@ -623,6 +755,13 @@ function cardHTML(h,rankMap){
       <div class="crit">${crit}</div>
       <p class="note">${h.note}</p>
       ${SITES[h.name]?`<a class="sitelink" href="${SITES[h.name]}" target="_blank" rel="noopener">Visit official site ↗</a>`:''}
+      <div class="carousel" data-resort="${h.name}" data-pid="${PLACE_IDS[h.name]||''}" data-color="${reg.color}">
+        <div class="caro-track"></div>
+        <button class="caro-nav prev" aria-label="Previous photo">‹</button>
+        <button class="caro-nav next" aria-label="Next photo">›</button>
+        <div class="caro-dots"></div>
+        <div class="caro-credit"></div>
+      </div>
     </div>
   </article>`;
 }
@@ -669,21 +808,34 @@ function renderBuilder(){
     </div>`;}).join('');
   const must=CRITERIA.filter(c=>state.levels[c.k]===3).length;
   const off=CRITERIA.filter(c=>state.levels[c.k]===0).length;
-  const rankMap=globalRanks();
-  const ranked=[...HOTELS].sort((a,b)=>weighted(b)-weighted(a));
-  const items=ranked.map(h=>{
+  let list=[...HOTELS];
+  if(state.maxPrice) list=list.filter(h=>h.price<=state.maxPrice);
+  // Smart pick: min-max normalize match & value across the current set, blend 50/50
+  const ws=list.map(weighted), vs=list.map(value);
+  const wMin=Math.min(...ws),wMax=Math.max(...ws),vMin=Math.min(...vs),vMax=Math.max(...vs);
+  const nm=(x,mn,mx)=>mx>mn?(x-mn)/(mx-mn):1;
+  const smart=h=>0.5*nm(weighted(h),wMin,wMax)+0.5*nm(value(h),vMin,vMax);
+  const sorter={value:(a,b)=>value(b)-value(a),smart:(a,b)=>smart(b)-smart(a)}[state.sortBy]||((a,b)=>weighted(b)-weighted(a));
+  list.sort(sorter);
+  const items=list.map((h,i)=>{
     const reg=REGIONS.find(r=>r.id===h.macro);
+    let big,unit,sub;
+    if(state.sortBy==='value'){big=value(h).toFixed(2);unit='value';sub=`match ${weighted(h).toFixed(2)} · ~$${h.price}`;}
+    else if(state.sortBy==='smart'){big=Math.round(smart(h)*100);unit='smart';sub=`${weighted(h).toFixed(2)} match · ${value(h).toFixed(2)} value · ~$${h.price}`;}
+    else {big=weighted(h).toFixed(2);unit='match';sub=`~$${h.price} · value ${value(h).toFixed(2)}`;}
     return `<div class="rl-item">
-      <div class="num">${rankMap.get(h.name)}</div>
+      <div class="num">${i+1}</div>
       <div><div class="nm">${h.name}</div><div class="sub"><span class="dot" style="background:${reg.color}"></span>${h.area} · ${h.sub}</div></div>
-      <div class="sc"><b>${weighted(h).toFixed(2)}</b><span>~$${h.price} · val ${value(h).toFixed(2)}</span><button class="pinbtn ${state.compare.includes(h.name)?'on':''}" data-pin="${h.name}" style="margin-top:7px">${state.compare.includes(h.name)?'✓':'＋ Compare'}</button></div>
+      <div class="sc"><b>${big}</b><span class="mlab">${unit}</span><span>${sub}</span><button class="pinbtn ${state.compare.includes(h.name)?'on':''}" data-pin="${h.name}" style="margin-top:7px">${state.compare.includes(h.name)?'✓':'＋ Compare'}</button></div>
     </div>`;}).join('');
+  const budgets=[['0','Any budget'],['400','≤ $400 / night'],['500','≤ $500 / night'],['650','≤ $650 / night'],['900','≤ $900 / night']];
+  const budgetOpts=budgets.map(([v,l])=>`<option value="${v}"${(+v===(state.maxPrice||0))?' selected':''}>${l}</option>`).join('');
   document.getElementById('main').innerHTML=`
    <div class="region-head"><div>
      <span class="eyebrow">Make it yours</span>
      <h2>Build Your Ideal Hotel</h2>
      <p class="blurb builder-intro">No sliders, no math. Just tell us how much each thing matters to your crew — and all 22 resorts re-rank on the spot. Tap a vibe to start fast, then fine-tune any factor.</p>
-     <details class="method"><summary>How the scores work</summary><div>Every resort is rated 0–5 on each factor against fixed anchors, so a number means the same thing across all 22. <b>5</b> = best-in-class · <b>3</b> = solid/standard · <b>1–2</b> = a genuine weak spot. For example — <b>Under-4 care:</b> 5 = a true drop-off baby club (only Club Med &amp; Meliá clear this), 3 = paid in-room sitter only, 1 = essentially none. <b>Swimmable beach:</b> 5 = calm wade-in water, 2 = lounging only (open-Pacific surf), 1 = swimming not allowed. The fact-based factors (childcare age, swimmable water, price) are firmer than judgment calls like dining or spa — and any two resorts within ~0.15 of each other are effectively tied.</div></details>
+     <details class="method"><summary>How the scores work</summary><div>Every resort is rated 0–5 on each factor against fixed anchors, so a number means the same thing across all 22. <b>5</b> = best-in-class · <b>3</b> = solid/standard · <b>1–2</b> = a genuine weak spot. For example — <b>Under-4 care:</b> 5 = a true drop-off baby club (only Club Med &amp; Meliá clear this), 3 = paid in-room sitter only, 1 = essentially none. <b>Swimmable beach:</b> 5 = calm wade-in water, 2 = lounging only (open-Pacific surf), 1 = swimming not allowed. The fact-based factors (childcare age, swimmable water, price) are firmer than judgment calls like dining or spa — and any two resorts within ~0.15 of each other are effectively tied. <b>Best value</b> ranks by match score per $100/night, so it rewards resorts that punch above their price. <b>Smart pick</b> blends the two 50/50 — the best balance of quality and price for what you're considering.</div></details>
    </div></div>
    <div class="builder-grid">
      <div class="sliders">
@@ -697,12 +849,22 @@ function renderBuilder(){
        <div class="imp-list">${rows}</div>
      </div>
      <div class="ranklist">
-       <div class="rank-cap">${must} must-have${must!==1?'s':''}${off?` · ${off} skipped`:''} → your ranking</div>
-       ${items}
+       <div class="rank-controls">
+         <div class="sortseg">
+           <button data-sort="match" class="${state.sortBy==='match'?'on':''}">Best match</button>
+           <button data-sort="smart" class="${state.sortBy==='smart'?'on':''}">Smart pick</button>
+           <button data-sort="value" class="${state.sortBy==='value'?'on':''}">Best value</button>
+         </div>
+         <label class="budget">Budget <select id="budgetsel">${budgetOpts}</select></label>
+       </div>
+       <div class="rank-cap">${list.length} of 22 shown · ${must} must-have${must!==1?'s':''}${off?` · ${off} skipped`:''} · by ${({smart:'smart pick',value:'value'})[state.sortBy]||'match'}</div>
+       ${items||'<div class="empty-note">No resorts under that budget — try raising it.</div>'}
      </div>
    </div>`;
   document.querySelectorAll('.seg button').forEach(b=>b.onclick=()=>{state.levels[b.dataset.k]=+b.dataset.lv;syncWeights();renderBuilder();});
   document.querySelectorAll('[data-vibe]').forEach(b=>b.onclick=()=>applyVibe(b.dataset.vibe));
+  document.querySelectorAll('[data-sort]').forEach(b=>b.onclick=()=>{state.sortBy=b.dataset.sort;renderBuilder();});
+  const bsel=document.getElementById('budgetsel'); if(bsel) bsel.onchange=()=>{state.maxPrice=+bsel.value||null;renderBuilder();};
   afterRender();
 }
 
